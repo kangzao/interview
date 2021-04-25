@@ -1,5 +1,6 @@
-package com.jep.github.interview.lock.aqs.source;
+package com.jep.github.interview.lock.aqs;
 
+import java.util.Iterator;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
@@ -43,7 +44,22 @@ public class MyAqs {
             }
         }
         waiters.remove(Thread.currentThread()); // 把线程移除
+    }
 
+
+    public boolean tryRelease() {
+        throw new UnsupportedOperationException();
+    }
+
+    //定义释放资源后要做的操作
+    public void release() {
+        if (tryRelease()) {
+            //通知等待者
+            Iterator<Thread> iterator = waiters.iterator();
+            while (iterator.hasNext()) {
+                LockSupport.unpark(iterator.next());
+            }
+        }
     }
 
 
