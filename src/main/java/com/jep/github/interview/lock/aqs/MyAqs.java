@@ -25,6 +25,41 @@ public class MyAqs {
     // 记录资源状态
     public volatile AtomicInteger state = new AtomicInteger(0);
 
+    // 共享资源占用的逻辑，返回资源的占用情况
+    public int tryAcquireShared() {
+        throw new UnsupportedOperationException();
+    }
+
+    public void acquireShared() {
+        boolean addQ = true;
+        while (tryAcquireShared() < 0) {
+            if (addQ) {
+                // 没拿到锁，加入到等待集合
+                waiters.offer(Thread.currentThread());
+                addQ = false;
+            } else {
+                // 阻塞 挂起当前的线程，不要继续往下跑了
+                LockSupport.park(); // 伪唤醒，就是非unpark唤醒的
+            }
+        }
+        waiters.remove(Thread.currentThread()); // 把线程移除
+    }
+
+    public boolean tryReleaseShared() {
+        throw new UnsupportedOperationException();
+    }
+
+    public void releaseShared() {
+        if (tryReleaseShared()) {
+            // 通知等待者
+            Iterator<Thread> iterator = waiters.iterator();
+            while (iterator.hasNext()) {
+                Thread next = iterator.next();
+                LockSupport.unpark(next); // 唤醒
+            }
+        }
+    }
+
     // 独占资源相关的代码
     public boolean tryAcquire() { // 交给使用者去实现。 模板方法设计模式
         throw new UnsupportedOperationException();
@@ -60,6 +95,15 @@ public class MyAqs {
                 LockSupport.unpark(iterator.next());
             }
         }
+    }
+
+
+    public AtomicInteger getState() {
+        return state;
+    }
+
+    public void setState(AtomicInteger state) {
+        this.state = state;
     }
 
 
