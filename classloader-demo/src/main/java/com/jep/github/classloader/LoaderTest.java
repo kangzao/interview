@@ -22,9 +22,7 @@ public class LoaderTest {
 //        URL fileUrlWithoutSpecialCharacterHandling = file.toURL();
 //        System.out.println("URL (no special character handling):" + fileUrlWithoutSpecialCharacterHandling);
 
-
-
-        URL classUrl = new URL("file:///Users/enping/code/interview/classloader-demo/target/classes");//jvm 类放在位置
+        URL classUrl = new URL("file:/Users/Ian/code/git/interview/classloader-demo/target/classes/");//jvm 类放在位置
 
         URLClassLoader parentLoader = new URLClassLoader(new URL[]{classUrl});
 
@@ -33,7 +31,7 @@ public class LoaderTest {
             URLClassLoader loader = new URLClassLoader(new URL[]{classUrl});
 
             // 问题：静态块触发
-            Class clazz = loader.loadClass("HelloService");
+            Class clazz = loader.loadClass("com.jep.github.classloader.HelloService");
             System.out.println("HelloService所使用的类加载器：" + clazz.getClassLoader());
 
             Object newInstance = clazz.newInstance();
