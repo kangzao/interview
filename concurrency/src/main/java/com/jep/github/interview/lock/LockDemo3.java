@@ -1,7 +1,6 @@
 package com.jep.github.interview.lock;
 
 import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class LockDemo3 {
     int i = 0;

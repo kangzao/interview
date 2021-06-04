@@ -1,6 +1,5 @@
 package com.jep.github.interview.concurrency.threadDemo;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.RejectedExecutionHandler;
