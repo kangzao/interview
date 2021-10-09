@@ -8,6 +8,7 @@
     <module>socket-netty</module>
     <module>classloader-demo</module>
     <module>concurrency</module>
+    <module>spring</module>
   </modules>
   <parent>
     <groupId>org.springframework.boot</groupId>
