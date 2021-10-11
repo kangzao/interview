@@ -34,13 +34,15 @@ public class DispatcherServlet_V1 extends HttpServlet {
   protected void doPost(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
     try {
+
       doDispatch(req, resp);
     } catch (Exception e) {
-      resp.getWriter().write("500 Exception " + Arrays.toString(e.getStackTrace()));
+      e.printStackTrace();
     }
   }
 
   private void doDispatch(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+
     String url = req.getRequestURI();
     String contextPath = req.getContextPath();
     url = url.replace(contextPath, "").replaceAll("/+", "/");
@@ -51,7 +53,7 @@ public class DispatcherServlet_V1 extends HttpServlet {
     Method method = (Method) this.mapping.get(url);
     Map<String, String[]> params = req.getParameterMap();
     method.invoke(this.mapping.get(method.getDeclaringClass().getName()),
-        new Object[]{req, resp, params.get("name")[0]});
+        new Object[]{req, resp, params.get("id")[0]});
   }
 
   //当我晕车的时候，我就不去看源码了

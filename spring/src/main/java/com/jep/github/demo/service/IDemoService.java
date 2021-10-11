@@ -1,4 +1,4 @@
-package com.jep.github.service;
+package com.jep.github.demo.service;
 
 public interface IDemoService {
 

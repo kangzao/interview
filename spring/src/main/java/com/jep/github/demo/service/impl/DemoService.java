@@ -1,7 +1,7 @@
-package com.jep.github.service.impl;
+package com.jep.github.demo.service.impl;
 
 import com.jep.github.mvc.annotation.ManualService;
-import com.jep.github.service.IDemoService;
+import com.jep.github.demo.service.IDemoService;
 
 /**
  * 核心业务
