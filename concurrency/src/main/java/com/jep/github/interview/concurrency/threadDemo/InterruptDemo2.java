@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
  * @author: enping.jep
  * @create: 2021-02-02 5:19 下午
  */
-public class InterruptDemo {
+public class InterruptDemo2 {
 
   private static int i;
 
@@ -16,7 +16,11 @@ public class InterruptDemo {
           @Override
           public void run() {
             while (!Thread.currentThread().isInterrupted()) {//默认是false
-              i++;
+              try {
+                TimeUnit.SECONDS.sleep(1);
+              } catch (InterruptedException e) {
+                e.printStackTrace();
+              }
             }
             System.out.println("i:" + i);
           }
@@ -24,7 +28,7 @@ public class InterruptDemo {
     thread.start();
 
     TimeUnit.SECONDS.sleep(1);
-    thread.interrupt(); //加和不加的效果
+    thread.interrupt();
     System.out.println(thread.isInterrupted());
   }
 
