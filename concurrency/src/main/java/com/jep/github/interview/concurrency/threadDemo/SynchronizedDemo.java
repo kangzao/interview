@@ -23,7 +23,7 @@ public class SynchronizedDemo {
           SynchronizedDemo.incr();
         }
       }).start();
-      Thread.sleep(5000);
+      Thread.sleep(200);
       System.out.println("result:" + count);
     }
   }
