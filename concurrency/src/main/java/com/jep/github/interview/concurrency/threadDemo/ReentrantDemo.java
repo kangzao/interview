@@ -3,6 +3,7 @@ package com.jep.github.interview.concurrency.threadDemo;
 /*
  * @author: enping.jep
  * @create: 2021-02-17 6:09 下午
+ *
  */
 public class ReentrantDemo {
 
@@ -14,6 +15,7 @@ public class ReentrantDemo {
 
   public void demo2() {
     System.out.println("demo2");
+    //可重入锁的目的：防止死锁
     synchronized (this) {
 
     }

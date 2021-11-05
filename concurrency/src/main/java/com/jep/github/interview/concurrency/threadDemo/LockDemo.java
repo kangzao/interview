@@ -8,6 +8,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 /*
  * @author: enping.jep
  * @create: 2021-02-17 6:20 下午
+ * 读写锁的demo
  */
 public class LockDemo {
 
