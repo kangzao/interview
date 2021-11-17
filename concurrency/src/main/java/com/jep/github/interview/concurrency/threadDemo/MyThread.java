@@ -3,6 +3,7 @@ package com.jep.github.interview.concurrency.threadDemo;
 /*
  * @author: enping.jep
  * @create: 2021-02-02 3:33 下午
+ * 继承Thread类启动线程
  */
 public class MyThread extends Thread {
 

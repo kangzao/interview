@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 /*
  * @author: enping.jep
  * @create: 2021-02-02 5:19 下午
+ * 中断线程
  */
 public class InterruptDemo {
 
@@ -24,7 +25,7 @@ public class InterruptDemo {
     thread.start();
 
     TimeUnit.SECONDS.sleep(1);
-    thread.interrupt(); //加和不加的效果
+    thread.interrupt(); //加和不加的效果,如果不加，则while循环不会退出
     System.out.println(thread.isInterrupted());
   }
 

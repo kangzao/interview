@@ -9,6 +9,7 @@ import java.util.concurrent.Future;
 /*
  * @author: enping.jep
  * @create: 2021-02-02 3:53 下午
+ * 实现callable接口通过futureTask包装器来创建Thread线程
  */
 public class CallableDemo implements Callable {
 
