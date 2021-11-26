@@ -19,7 +19,7 @@ public class ConditionWait implements Runnable {
       lock.lock(); //竞争锁
       try {
         System.out.println("begin - ConditionWait");
-        condition.await();//阻塞(1. 释放锁, 2.阻塞当前线程, FIFO（单向、双向）)
+        condition.await();//阻塞等待
         System.out.println("end - ConditionWait");
 
       } catch (InterruptedException e) {
