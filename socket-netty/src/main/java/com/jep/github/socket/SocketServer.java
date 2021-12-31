@@ -30,7 +30,7 @@ public class SocketServer {
 //      网卡，也可以选择监听一个网卡，这样，只有发给这
 //      个网卡的包，才会给你。
       serverSocket = new ServerSocket(8080);
-      //阻塞等待客户端连接接下来，服务端调用 accept 函数，拿出一个已经完成的连接进行处理。如果还没有完成，就要等着。
+      //阻塞等待客户端连接，服务端调用 accept 函数，拿出一个已经完成的连接进行处理。如果还没有完成，就要等着。
 
       socket = serverSocket.accept();
     } catch (IOException e) {
@@ -57,7 +57,7 @@ public class SocketServer {
         // 在系统标准输出上打印读入的字符串
         System.out.println("Server:" + line);
         // 从client读入字符串，并打印到标准输出
-        System.out.println("Client:" + is.readLine());
+        System.out.println("从client读入字符串:" + is.readLine());
         //从标准输入读入一个字符串
         line = sin.readLine();
       }

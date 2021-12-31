@@ -38,7 +38,7 @@ public class SocketClient {
         //打印读入的字符串
         System.out.println("Client：" + readline);
         //从server读入字符串，并打印
-        System.out.println("Server: " + is.readLine());
+        System.out.println("从server读入字符串: " + is.readLine());
 
         readline = sin.readLine();//从系统标准输入读入字符串
 
