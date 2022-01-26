@@ -11,7 +11,7 @@ public class BufferDemo {
 
     public static void main(String args[]) throws Exception {
         //这用用的是文件IO处理
-        FileInputStream fin = new FileInputStream("//Users//enping//Documents//book//test.txt");
+        FileInputStream fin = new FileInputStream("//Users//Ian//book//test.txt");
         //创建文件的操作管道
         FileChannel fc = fin.getChannel();
 
@@ -19,7 +19,7 @@ public class BufferDemo {
         ByteBuffer buffer = ByteBuffer.allocate(10);
         output("初始化", buffer);
 
-        //先读一下
+        //先读一下 fileChannel.read(buffer)
         fc.read(buffer);
         output("调用read()", buffer);
 
@@ -30,7 +30,6 @@ public class BufferDemo {
         //判断有没有可读数据
         while (buffer.remaining() > 0) {
             byte b = buffer.get();
-            // System.out.print(((char)b));
         }
         output("调用get()", buffer);
 
