@@ -6,7 +6,7 @@ package com.jep.github.interview.concurrency.threadDemo;
  */
 public class VolatileDemo {
 
-  public volatile static boolean stop = false;
+  public volatile static boolean stop = false;//不加volatile，程序停不下来
 
   public static void main(String args[]) throws InterruptedException {
     Thread thread = new Thread(() -> {

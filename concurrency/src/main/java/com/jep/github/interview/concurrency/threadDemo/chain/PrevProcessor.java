@@ -1,4 +1,4 @@
-package com.jep.github.interview.concurrency.threadDemo;
+package com.jep.github.interview.concurrency.threadDemo.chain;
 
 import java.util.concurrent.LinkedBlockingQueue;
 
