@@ -14,6 +14,7 @@ public class JoinThread extends Thread {
 
     public static void main(String[] args) throws InterruptedException {
         JoinThread jt = new JoinThread("被Join的线程");
+        jt.setDaemon(true);
         jt.start();
         jt.join();
         System.out.println("Main wait util JoinThread Finish");

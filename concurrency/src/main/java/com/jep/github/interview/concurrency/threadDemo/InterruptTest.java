@@ -14,7 +14,7 @@ public class InterruptTest {
         bt.setDaemon(true);
         bt.start();
 
-        // 休眠 5 秒，让 sleepThread 和 busyThread 充分运行
+        // 休眠 2 秒，让 sleepThread 和 busyThread 充分运行
         TimeUnit.SECONDS.sleep(2);
 
         st.interrupt();

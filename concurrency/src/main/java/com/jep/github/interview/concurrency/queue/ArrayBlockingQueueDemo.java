@@ -21,7 +21,7 @@ public class ArrayBlockingQueueDemo {
 
         Thread.sleep(3000L); // 让前面的线程跑起来
 
-        // 三个线程塞数据
+        // 多个线程塞数据
         for (int i = 0; i < 6; i++) {
             new Thread(() -> {
                 try {
