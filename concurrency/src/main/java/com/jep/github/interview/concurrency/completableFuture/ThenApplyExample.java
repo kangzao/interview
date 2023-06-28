@@ -16,7 +16,7 @@ public class ThenApplyExample {
             return "Hello";
         });
 // 使用 thenApply 对结果进行转换
-        CompletionStage<String> transformedFuture = future.thenApply(result -> result + ", World!");
+        CompletionStage<String> transformedFuture = future.thenApply(result -> result + ", World!");//函数式编程  构造
 // 获取转换后的结果
         transformedFuture.whenComplete((result, exception) -> {
             if (exception == null) {

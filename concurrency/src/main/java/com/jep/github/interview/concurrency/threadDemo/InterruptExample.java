@@ -24,7 +24,6 @@ class MyTestThread extends Thread {
                 System.out.println("Thread interrupted!");
                 // 重新设置中断状态，以便在循环条件中捕获
                 interrupt();
-                System.out.println(Thread.currentThread().getState());
 
             }
         }

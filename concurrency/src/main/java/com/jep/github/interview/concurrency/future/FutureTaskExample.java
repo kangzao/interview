@@ -13,7 +13,7 @@ public class FutureTaskExample {
 
         ExecutorService executor = Executors.newFixedThreadPool(2);
         executor.execute(futureTask1);
-        executor.execute(futureTask2);
+        executor.execute(futureTask2);//提交到线程池以后，两个线程分别沉睡1s和2s
 
         while (true) {
             try {
@@ -31,7 +31,9 @@ public class FutureTaskExample {
 
                 System.out.println("Waiting for FutureTask2 to complete");
                 String s = futureTask2.get(200L, TimeUnit.MILLISECONDS);
+                //无法判断是否获取到了结果，超时说明：s == null
                 if (s != null) {
+                    //不超时，输出s的值
                     System.out.println("FutureTask2 output=" + s);
                 }
             } catch (InterruptedException | ExecutionException e) {

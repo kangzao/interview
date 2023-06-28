@@ -9,7 +9,7 @@ public class CallableThreadTest {
         FutureTask<Integer> f = new FutureTask<>(new CallableTask());
 
         // 使用FutureTask对象作为Thread对象的target创建并启动新线程
-        new Thread(f, "有返回值的线程").start();
+        new Thread(f, "有返回值的线程").start();//多态 子类当做父类用
 
         try {
             // 调用FutureTask对象的get()方法来同步等待子线程执行结束后的返回值
