@@ -29,7 +29,7 @@ public class CompletableFutureExample {
         //把foodServe的结果进行了消费  order消费foodServe的返回值
         CompletableFuture<String> order = foodServe.thenApply(orderComplete -> orderComplete + "：Order Completed..");
         try {
-            //只有调用get才会执行
+
             System.out.println(order.get());
         } catch (Exception e) {
             e.printStackTrace();

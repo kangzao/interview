@@ -9,6 +9,7 @@
     <module>classloader-demo</module>
     <module>concurrency</module>
     <module>spring</module>
+      <module>lambda</module>
   </modules>
   <parent>
     <groupId>org.springframework.boot</groupId>
