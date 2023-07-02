@@ -23,3 +23,14 @@ public class SingletonWithBug {
         SingletonWithBug.getInstance();
     }
 }
+
+//MVC   model  view  controller
+//有状态 无状态
+//user 有状态的  id  id
+//UserController  （C -R -U -d） 没有状态的
+//UserDao  没有状态的
+
+//UserController  UserDao  只需要一份就够了 不需要频繁被初始化
+//无状态的 工具类 controller service  dao高频使用的，往往只加载一次 放入到jvm内存里
+//避免了每次 new controller
+//JVM

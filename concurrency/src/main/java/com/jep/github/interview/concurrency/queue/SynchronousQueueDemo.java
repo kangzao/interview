@@ -6,8 +6,6 @@ import java.util.concurrent.SynchronousQueue;
 public class SynchronousQueueDemo {
     public static void main(String[] args) throws InterruptedException {
         SynchronousQueue<String> synchronousQueue = new SynchronousQueue<>();
-        // synchronousQueue.add("a"); // IllegalStateException
-        // synchronousQueue.offer("a");
         System.out.println(synchronousQueue.poll()); // 非阻塞
 
         // 阻塞式的用法
