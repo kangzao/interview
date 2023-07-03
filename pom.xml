@@ -10,6 +10,7 @@
     <module>concurrency</module>
     <module>spring</module>
       <module>lambda</module>
+      <module>jvm</module>
   </modules>
   <parent>
     <groupId>org.springframework.boot</groupId>
