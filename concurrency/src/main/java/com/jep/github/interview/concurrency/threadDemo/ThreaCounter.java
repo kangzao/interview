@@ -13,11 +13,11 @@ public class ThreaCounter extends Thread {
     public static void main(String[] args) throws InterruptedException {
         ThreaCounter t1 = new ThreaCounter();
         ThreaCounter t2 = new ThreaCounter();
-        ThreaCounter t3 = new ThreaCounter();
-        t1.start();
+        ThreaCounter t3 = new ThreaCounter();//语言级别有了线程 操作系统还没有
+        t1.start();//意味着操作系统中有了线程  是否run起来由操作系统决定
         t2.start();
         t3.start();
-        t1.join();
+        t1.join();//主线程挂起等待 直到t1执行完
         t2.join();
         t3.join();
         System.out.println("cnt is " + cnt);

@@ -26,11 +26,11 @@ public class FutureTaskExample {
 
                 if (!futureTask1.isDone()) {
                     //wait indefinitely for future task to complete
-                    System.out.println("FutureTask1 output=" + futureTask1.get());
+                    System.out.println("FutureTask1 output=" + futureTask1.get());//不见不散 当任务1完成时  说明已经过去了一秒且任务1执行完毕  且 任务2 也沉睡了一秒
                 }
 
                 System.out.println("Waiting for FutureTask2 to complete");
-                String s = futureTask2.get(200L, TimeUnit.MILLISECONDS);
+                String s = futureTask2.get(200L, TimeUnit.MILLISECONDS);//过期不候  第一次走到这里 任务2还需要沉睡1秒 第二次：400ms 200ms  1s   意味着等待超时代码 执行五次
                 //无法判断是否获取到了结果，超时说明：s == null
                 if (s != null) {
                     //不超时，输出s的值

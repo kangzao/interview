@@ -17,6 +17,7 @@ public class ThenAcceptExample {
         });
 // 使用 thenAccept 对结果进行消费
         CompletionStage<Void> consumedFuture = future.thenAccept(result -> {
+//            int i = 1 / 0;
             System.out.println(result + ", World!");
         });
 // 等待异步任务完成
