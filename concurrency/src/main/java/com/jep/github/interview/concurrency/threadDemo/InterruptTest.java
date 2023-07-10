@@ -21,6 +21,7 @@ public class InterruptTest {
         bt.interrupt();
 
         System.out.println("SleepThread interrupted is " + st.isInterrupted());
+        // do something
         System.out.println("BusyThread interrupted is " + bt.isInterrupted());
 
         // 防止 sleepThread 和 busyThread 立刻退出

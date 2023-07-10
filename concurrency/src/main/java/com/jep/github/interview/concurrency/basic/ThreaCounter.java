@@ -14,7 +14,7 @@ public class ThreaCounter extends Thread {
     public static void main(String[] args) throws InterruptedException {
         ThreaCounter t1 = new ThreaCounter();
         ThreaCounter t2 = new ThreaCounter();
-        ThreaCounter t3 = new ThreaCounter();
+        ThreaCounter t3 = new ThreaCounter();//jvm层面新建了线程
         t1.start();
         t2.start();
         t3.start();

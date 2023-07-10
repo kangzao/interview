@@ -7,7 +7,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 public class ArrayBlockingQueueDemo {
     public static void main(String[] args) throws InterruptedException {
         // 构造时需要指定容量(量力而行),可以选择是否需要公平（最先进入阻塞的，先操作）
-        ArrayBlockingQueue<String> queue = new ArrayBlockingQueue<>(3, false);
+        ArrayBlockingQueue<String> queue = new ArrayBlockingQueue<>(3, true);
         // 1秒消费数据一个
         new Thread(() -> {
             while (true) {

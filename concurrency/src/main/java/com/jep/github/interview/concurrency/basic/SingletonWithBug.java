@@ -10,8 +10,8 @@ public class SingletonWithBug {
                     myinstance = new SingletonWithBug();
                     // jvm三步操作，非原子操作(有可能部分成功、或者部分失败) 中间状态
                     // 开辟内存
-                    // 内存赋值给instance    instance指向内存 //线程A
                     // 内存上初始化对象 integer n = 4  INSTANCE -> SingletonWithBug
+                    // 内存赋值给instance    instance指向内存 //线程A
                     // 执行的更快、
                 }
             }
