@@ -22,9 +22,8 @@ class MyTestThread extends Thread {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
                 System.out.println("Thread interrupted!");
-                // 重新设置中断状态，以便在循环条件中捕获
-                interrupt();
-
+                // 重新设置中断状态，以便在循环条件中捕获 false
+                interrupt();//true
             }
         }
     }
