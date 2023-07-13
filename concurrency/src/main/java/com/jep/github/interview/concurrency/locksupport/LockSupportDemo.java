@@ -2,41 +2,56 @@ package com.jep.github.interview.concurrency.locksupport;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.LockSupport;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class LockSupportDemo {
-    static Object obj = new Object();
-    static Lock lock = new ReentrantLock();
-    static Condition condition = lock.newCondition();
-
+    // 先 unpark 后 park 也是可以运行成功的,不像 wait 和 notify 会直接报错
     public static void main(String[] args) {
-        new Thread(() -> {
+        Thread thread1 = new Thread(() -> {
+            // 暂停几秒钟
             try {
-                Thread.sleep(3000); // 这里让线程1睡上 3 秒钟
+                Thread.sleep(3000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            lock.lock();
-            try {
-                System.out.println(Thread.currentThread().getName() + "进入");
-                condition.await();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } finally {
-                lock.unlock();
-            }
+            System.out.println(Thread.currentThread().getName() + "进入");
+            LockSupport.park(); // 如果先 unpark 后 park , 那么这行会直接不起作用
             System.out.println(Thread.currentThread().getName() + "被唤醒");
-        }, "线程1").start();
-
+        }, "线程1");
+        thread1.start();
 
         new Thread(() -> {
-            lock.lock();
-            try {
-                condition.signal();
-                System.out.println(Thread.currentThread().getName() + "通知");
-            } finally {
-                lock.unlock();
-            }
+            System.out.println(Thread.currentThread().getName() + "通知");
+            LockSupport.unpark(thread1);
         }, "线程2").start();
     }
 }
+/**
+ * 线程2通知线程1进入线程1被唤醒
+ * <p>
+ * 线程1进入
+ * 线程2通知
+ * 线程1被唤醒
+ * <p>
+ * 线程1进入
+ * 线程2通知
+ * 线程1被唤醒
+ * <p>
+ * 线程1进入
+ * 线程2通知
+ * 线程1被唤醒
+ * <p>
+ * 线程1进入
+ * 线程2通知
+ * 线程1被唤醒
+ * <p>
+ * 线程1进入
+ * 线程2通知
+ * 线程1被唤醒
+ **/
+/**
+ * 线程1进入
+ * 线程2通知
+ * 线程1被唤醒
+ **/

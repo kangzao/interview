@@ -6,12 +6,14 @@ public class Example {
     public static void main(String[] args) throws InterruptedException {
 
         int numTasks = 5;
-        CountDownLatch latch = new CountDownLatch(6);
+        CountDownLatch latch = new CountDownLatch(5);
         for (int i = 0; i < numTasks; i++) {
             new Thread(() -> {
 // 子任务的逻辑
-                System.out.println("子任务完成");
                 latch.countDown();
+                //超时的操作
+                System.out.println("子任务完成");
+
             }).start();
         }
 // 主线程等待所有子任务完成

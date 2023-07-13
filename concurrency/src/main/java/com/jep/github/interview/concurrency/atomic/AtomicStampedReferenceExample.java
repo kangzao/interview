@@ -14,6 +14,7 @@ public class AtomicStampedReferenceExample {
             boolean success = atomicStampedRef.compareAndSet(0, 1, stamp, stamp + 1);
             System.out.println("Thread 1: Value modified: " + success);
         });
+
         Thread thread2 = new Thread(() -> {
             int stamp = atomicStampedRef.getStamp();
 // 先将变量的值从0修改为1，再修改回0

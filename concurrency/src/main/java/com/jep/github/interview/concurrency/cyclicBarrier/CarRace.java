@@ -1,8 +1,8 @@
 package com.jep.github.interview.concurrency.cyclicBarrier;
 
-import com.jep.github.interview.concurrency.lock.aqs.source.CyclicBarrier;
 
 import java.util.concurrent.BrokenBarrierException;
+import java.util.concurrent.CyclicBarrier;
 
 public class CarRace {
     public static void main(String[] args) {
@@ -32,9 +32,9 @@ class Car implements Runnable {
         for (int i = 0; i < numRounds; i++) {
             try {
                 System.out.println("赛车" + carNumber + "已准备好第" + (i + 1) + "圈比赛");
-                barrier.await(); // 等待其他赛车准备好
+                barrier.await(); // 等待其他赛车准备好  第一圈之前在跑道上在同一起跑线准备好了
                 System.out.println("赛车" + carNumber + "正在进行第" + (i + 1) + "圈比赛");
-                Thread.sleep((long) (Math.random() * 1000)); // 模拟比赛过程
+                Thread.sleep((long) (Math.random() * 1000)); // 模拟比赛过程   //在赛道上跑完了
                 System.out.println("赛车" + carNumber + "已完成第" + (i + 1) + "圈比赛");
                 barrier.await(); // 等待其他赛车完成比赛
             } catch (InterruptedException | BrokenBarrierException e) {

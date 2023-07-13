@@ -12,7 +12,7 @@ public class ArrayBlockingQueueDemo {
         new Thread(() -> {
             while (true) {
                 try {
-                    System.out.println("取到数据：" + queue.poll()); // poll非阻塞
+                    System.out.println("取到数据：" + queue.take()); // poll非阻塞
                     Thread.sleep(1000L);
                 } catch (InterruptedException e) {
                 }
