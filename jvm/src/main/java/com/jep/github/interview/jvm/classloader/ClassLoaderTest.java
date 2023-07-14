@@ -2,6 +2,7 @@ package com.jep.github.interview.jvm.classloader;
 
 public class ClassLoaderTest {
     public static void main(String[] args) {
+        //从局部变量表的slot里面读取局部变量
         // 获取系统类加载器
         ClassLoader systemClassLoader = ClassLoader.getSystemClassLoader();
         System.out.println(systemClassLoader);
