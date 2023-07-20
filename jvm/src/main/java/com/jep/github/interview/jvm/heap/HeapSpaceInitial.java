@@ -27,5 +27,6 @@ public class HeapSpaceInitial {
 
         System.out.println("-Xms : " + initialMemory + "M");
         System.out.println("-Xmx : " + maxMemory + "M");
+        //sleep
     }
 }
