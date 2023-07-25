@@ -6,9 +6,11 @@ import java.util.concurrent.CompletionStage;
 public class ThenApplyExample {
     public static void main(String[] args) {
 // 创建一个异步计算任务
+        System.out.println(Thread.currentThread().getName());
         CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> {
 // 模拟耗时操作
             try {
+                System.out.println(Thread.currentThread().getName());
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -19,6 +21,7 @@ public class ThenApplyExample {
         CompletionStage<String> transformedFuture = future.thenApply(result -> result + ", World!");//函数式编程  构造
 // 获取转换后的结果
         transformedFuture.whenComplete((result, exception) -> {
+            System.out.println(Thread.currentThread().getName());
             if (exception == null) {
                 System.out.println(result); // 输出 "Hello, World!"
             } else {

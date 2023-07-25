@@ -13,7 +13,13 @@ public class Customer {
         acct = new Account();
     }
 
+    public static void main(String[] args) {
+        Customer user = new Customer();
+        System.out.println(user);
+    }
+
 }
+
 
 class Account {
 
