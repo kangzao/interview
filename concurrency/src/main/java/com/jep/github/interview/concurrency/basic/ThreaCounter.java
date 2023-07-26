@@ -1,7 +1,7 @@
 package com.jep.github.interview.concurrency.basic;
 
 public class ThreaCounter extends Thread {
-    private static int cnt = 0;
+    private static int cnt = 0;//类级变量
 
     @Override
     public void run() {
@@ -18,10 +18,11 @@ public class ThreaCounter extends Thread {
         t1.start();
         t2.start();
         t3.start();
-        t1.join();
+        t1.join();//主线程挂起，必须等待子线程执行完毕
         t2.join();
         t3.join();
         System.out.println("cnt is " + cnt);
+
         //编译优化 bytecode  指令重排序
     }
     //main函数唤起一个jvm进程  包含三个线程  三个线程各自运行  有个类变量(被多个线程访问)

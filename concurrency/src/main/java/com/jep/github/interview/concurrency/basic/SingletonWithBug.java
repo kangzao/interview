@@ -3,7 +3,7 @@ package com.jep.github.interview.concurrency.basic;
 public class SingletonWithBug {
     private static SingletonWithBug myinstance;
 
-    public static SingletonWithBug getInstance() {
+    public static SingletonWithBug getInstance() {//池化思想的体现
         if (myinstance == null) { //线程B
             synchronized (SingletonWithBug.class) {
                 if (myinstance == null) {

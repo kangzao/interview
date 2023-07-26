@@ -1,12 +1,12 @@
 package com.jep.github.interview.jvm.method;
 
 public class Customer {
-    int id = 13;
+    int id = 1001;
     String name;
     Account acct;
 
     {
-        name = "zzh";
+        name = "匿名客户";
     }
 
     public Customer() {
@@ -14,12 +14,10 @@ public class Customer {
     }
 
     public static void main(String[] args) {
-        Customer user = new Customer();
-        System.out.println(user);
+        Customer cust = new Customer();
     }
 
 }
-
 
 class Account {
 
