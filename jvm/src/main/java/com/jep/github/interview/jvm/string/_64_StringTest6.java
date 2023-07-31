@@ -58,6 +58,8 @@ public class _64_StringTest6 {
         String s1 = "a";
         String s2 = "b";
         String s3 = "ab";
+        String s4 = s1 + s2;//
+        System.out.println(s3 == s4);//false
 
         /*
         如下的s1 + s2 的执行细节：(变量s是我临时定义的）
@@ -86,8 +88,7 @@ public class _64_StringTest6 {
         27 astore 4
         29 getstatic #3 <java/lang/System.out>
          */
-        String s4 = s1 + s2;//
-        System.out.println(s3 == s4);//false
+
 
     }
 

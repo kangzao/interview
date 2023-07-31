@@ -4,7 +4,7 @@ public class DeadThreadTest {
     public static void main(String[] args) {
         Runnable r = () -> {
             System.out.println(Thread.currentThread().getName() + "开始");
-            DeadThread dead = new DeadThread();
+            DeadThread dead = new DeadThread();//按需加载 加载-链接(验证-准备-解析)-初始化(双构造方法 静态变量-clinit  init)
             System.out.println(Thread.currentThread().getName() + "结束");
         };
 

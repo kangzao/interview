@@ -10,6 +10,7 @@ public class ClassInitTest {
         System.out.println(num);
         //System.out.println(number);//报错：非法的前向引用（可以赋值，但不能调用）
     }
+
     public static void main(String[] args) {
         System.out.println(ClassInitTest.num); //2
         System.out.println(ClassInitTest.number); //2

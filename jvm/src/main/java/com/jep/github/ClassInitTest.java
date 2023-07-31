@@ -4,6 +4,10 @@ public class ClassInitTest {
     private static int num = 1;
     private static int number = 10;    //linking之prepare: number = 0 --> initial: 10 --> 20
 
+    public ClassInitTest() {
+
+    }
+
     static {
         num = 2;
         number = 20;
