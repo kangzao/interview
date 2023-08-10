@@ -2,6 +2,7 @@ package com.jep.github.interview.concurrency.threadDemo;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
+import java.util.concurrent.TimeUnit;
 
 public class CallableThreadTest {
     public static void main(String[] args) {
@@ -12,8 +13,9 @@ public class CallableThreadTest {
         new Thread(f, "有返回值的线程").start();//多态 子类当做父类用
 
         try {
+            System.out.println("子线程的返回值：");
             // 调用FutureTask对象的get()方法来同步等待子线程执行结束后的返回值
-            System.out.println("子线程的返回值：" + f.get());
+            System.out.println("子线程的返回值：" + f.get(1000, TimeUnit.MILLISECONDS));
         } catch (Exception e) {
 
         }

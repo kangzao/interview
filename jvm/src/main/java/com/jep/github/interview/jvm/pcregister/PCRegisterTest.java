@@ -6,13 +6,15 @@ package com.jep.github.interview.jvm.pcregister;
  **/
 public class PCRegisterTest {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         int i = 10;
         int j = 20;
         int k = i + j;
 
         String s = "abc";
         System.out.println(i);
+
+        Thread.sleep(1000000);
         System.out.println(k);
     }
 }
