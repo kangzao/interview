@@ -8,7 +8,7 @@ public class JavaStringPool {
         String s4 = "Hi";
         System.out.println("s1 == s2? " + (s1 == s2));
         System.out.println("s3 == s4? " + (s3 == s4));
-        s3.intern();
+        s3 = s3.intern();
         System.out.println("s3 == s4? " + (s3 == s4));
     }
 }

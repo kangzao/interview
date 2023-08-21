@@ -58,7 +58,7 @@ public class _64_StringTest6 {
         String s1 = "a";
         String s2 = "b";
         String s3 = "ab";
-        String s4 = s1 + s2;//
+        String s4 = s1 + s2;//new
         System.out.println(s3 == s4);//false
 
         /*

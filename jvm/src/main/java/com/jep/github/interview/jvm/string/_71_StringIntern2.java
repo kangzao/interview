@@ -16,9 +16,9 @@ public class _71_StringIntern2 {
         long start = System.currentTimeMillis();
         for (int i = 0; i < MAX_COUNT; i++) {
             // 不使用intern，对比
-            arr[i] = new String(String.valueOf(data[i % data.length])); // 花费的时间为：10296
+//            arr[i] = new String(String.valueOf(data[i % data.length])); // 花费的时间为：7314
             // 使用intern，对比
-//      arr[i] = new String(String.valueOf(data[i % data.length])).intern(); // 花费的时间为：924
+            arr[i] = new String(String.valueOf(data[i % data.length])).intern(); // 花费的时间为：4724
         }
         long end = System.currentTimeMillis();
         System.out.println("花费的时间为：" + (end - start));
