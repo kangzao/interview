@@ -45,9 +45,9 @@ public class ReadWriteLockDemo {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        new Thread(() -> read()).start();
-        new Thread(() -> read()).start();
         new Thread(() -> write()).start();
         new Thread(() -> write()).start();
+        new Thread(() -> read()).start();
+        new Thread(() -> read()).start();
     }
 }
