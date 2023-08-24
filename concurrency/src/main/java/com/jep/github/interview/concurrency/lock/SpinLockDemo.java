@@ -8,15 +8,16 @@ public class SpinLockDemo {
 
     public void lock() {
         Thread thread = Thread.currentThread();
-        System.out.println(Thread.currentThread().getName() + "\t come in");
+        System.out.println(Thread.currentThread().getName() + "\t 加锁");
         while (!atomicReference.compareAndSet(null, thread)) {
+
         }
     }
 
     public void unLock() {
         Thread thread = Thread.currentThread();
         atomicReference.compareAndSet(thread, null);
-        System.out.println(Thread.currentThread().getName() + "\t myUnLock over");
+        System.out.println(Thread.currentThread().getName() + "\t UnLock over");
     }
 
     public static void main(String[] args) {
@@ -25,6 +26,7 @@ public class SpinLockDemo {
             spinLockDemo.lock();
             try {
                 TimeUnit.SECONDS.sleep(5);
+                System.out.println(Thread.currentThread().getName() + "线程结束睡眠");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

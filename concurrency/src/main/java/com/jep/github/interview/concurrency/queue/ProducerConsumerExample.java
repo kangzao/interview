@@ -10,7 +10,7 @@ public class ProducerConsumerExample {
         Thread producerThread = new Thread(() -> {
             for (int i = 0; i < 20; i++) {
                 try {
-                    taskQueue.put(i);
+                    taskQueue.put(i);//如果队列中有空间则不阻塞
                     System.out.println("Produced: " + i);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
