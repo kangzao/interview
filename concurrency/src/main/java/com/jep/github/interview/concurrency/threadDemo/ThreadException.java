@@ -11,7 +11,6 @@ public class ThreadException {
         t.setUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
             @Override
             public void uncaughtException(Thread t, Throwable e) {
-
                 System.out.println(t.getName() + "执行, 异常信息:" + e.getMessage());
             }
         });

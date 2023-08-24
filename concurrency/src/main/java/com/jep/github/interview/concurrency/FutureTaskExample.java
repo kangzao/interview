@@ -13,7 +13,7 @@ public class FutureTaskExample {
         executor.execute(futureTask2);
         while (true) {
             try {
-                if (futureTask1.isDone() && futureTask2.isDone()) {
+                if (futureTask1.isDone() && futureTask2.isDone()) {//任务1 和 任务2是否同时执行完毕
                     System.out.println("Done");
                     //shut down executor service
                     executor.shutdown();
@@ -23,9 +23,9 @@ public class FutureTaskExample {
                     //wait indefinitely for future task to complete
                     System.out.println("FutureTask1 output=" + futureTask1.get());
                 }
-                System.out.println("Waiting for FutureTask2 to complete");//过去一秒
+                System.out.println("Waiting for FutureTask2 to complete");//过去一秒 1.2s
                 String s = futureTask2.get(200L, TimeUnit.MILLISECONDS); //任务2还有一秒钟才苏醒 等五次知道苏醒
-                if (s != null) {
+                if (s != null) {  //1、1S 2、800ms  3、600ms  4、400ms 5、200ms 
                     System.out.println("FutureTask2 output=" + s);
                 }
             } catch (InterruptedException | ExecutionException e) {
