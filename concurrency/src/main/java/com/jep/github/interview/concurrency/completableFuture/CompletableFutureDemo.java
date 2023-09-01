@@ -1,20 +1,24 @@
 package com.jep.github.interview.concurrency.completableFuture;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+
+@Slf4j
 public class CompletableFutureDemo {
     public Future<String> calculateAsync() throws InterruptedException {
-        CompletableFuture<String> completableFutureexample = new CompletableFuture<>();
+        CompletableFuture<String> cf = new CompletableFuture<>();
 
         Executors.newCachedThreadPool().submit(() -> {
             Thread.sleep(500);
-            completableFutureexample.complete("Hello");
+            cf.complete("Hello");
             return null;
         });
 
-        return completableFutureexample;
+        return cf;
     }
 
     public static void main(String[] args) {
@@ -32,6 +36,10 @@ public class CompletableFutureDemo {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        CompletableFuture<String> baseFuture = CompletableFuture.completedFuture("Base Future");
+        log.info(baseFuture.thenApply((r) -> r + " Then Apply").join());
+        baseFuture.thenAccept((r) -> log.info(r)).thenAccept((Void) -> log.info("Void"));
 
     }
 }  
