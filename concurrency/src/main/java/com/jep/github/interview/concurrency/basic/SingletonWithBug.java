@@ -7,7 +7,7 @@ public class SingletonWithBug {
         if (myinstance == null) { //线程B
             synchronized (SingletonWithBug.class) {
                 if (myinstance == null) {
-                    myinstance = new SingletonWithBug();
+                    myinstance = new SingletonWithBug();//Thread A
                     // jvm三步操作，非原子操作(有可能部分成功、或者部分失败) 中间状态
                     // 开辟内存
                     // 内存上初始化对象 integer n = 4  INSTANCE -> SingletonWithBug

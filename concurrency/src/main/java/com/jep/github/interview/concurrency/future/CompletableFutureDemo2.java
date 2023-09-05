@@ -15,12 +15,13 @@ public class CompletableFutureDemo2 {
             return 533;
         });
 
-        /**  去掉注释后上面代码计算完成，返回结果**/
-        try {
-            TimeUnit.SECONDS.sleep(2);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        /**  去掉注释后上面代码计算完成，返回结果
+         try {
+         TimeUnit.SECONDS.sleep(2);
+         } catch (InterruptedException e) {
+         e.printStackTrace();
+         }
+         **/
         System.out.println(completableFuture.getNow(444));
     }
 }

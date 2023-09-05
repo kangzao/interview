@@ -5,8 +5,11 @@ import java.util.concurrent.ExecutionException;
 
 public class AccountTransactionExample {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
+        System.out.println("main currentThread:" + Thread.currentThread().getName());
 // 模拟查询账户余额的异步操作
         CompletableFuture<Double> balanceFuture = CompletableFuture.supplyAsync(() -> {
+            System.out.println("balanceFuture currentThread:" + Thread.currentThread().getName());
+            System.out.println(Thread.currentThread().isDaemon());
 // 模拟耗时操作
             try {
                 Thread.sleep(1000);
@@ -17,6 +20,8 @@ public class AccountTransactionExample {
         });
 // 模拟查询最近交易记录的异步操作
         CompletableFuture<Transaction> transactionFuture = CompletableFuture.supplyAsync(() -> {
+            System.out.println("transactionFuture currentThread:" + Thread.currentThread().getName());
+            System.out.println(Thread.currentThread().isDaemon());
 // 模拟耗时操作
             try {
                 Thread.sleep(1000);
@@ -27,6 +32,8 @@ public class AccountTransactionExample {
         });
 // 使用 thenCombine 方法组合异步操作的结果
         CompletableFuture<AccountInfo> combinedFuture = balanceFuture.thenCombine(transactionFuture, (balance, transaction) -> {
+            System.out.println("combinedFuture currentThread:" + Thread.currentThread().getName());
+            System.out.println(Thread.currentThread().isDaemon());
             return new AccountInfo(balance, transaction);
         });
 // 输出账户信息

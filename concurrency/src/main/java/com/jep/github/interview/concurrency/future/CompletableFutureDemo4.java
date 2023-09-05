@@ -19,7 +19,7 @@ public class CompletableFutureDemo4 {
             System.out.println("222");
             return f + 1;
         }).thenApply(f -> {
-//            int age = 10 / 0; // 异常情况：哪步出错就停在哪步。
+            int age = 10 / 0; // 异常情况：哪步出错就停在哪步。
             System.out.println("333");
             return f + 1;
         }).whenCompleteAsync((v, e) -> {
