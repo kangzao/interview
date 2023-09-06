@@ -9,9 +9,9 @@ public class ChangeHashCode {
         Person p2 = new Person(1002, "BB");
         set.add(p1);
         set.add(p2);
-        System.out.println(p1.hashCode());
+        System.out.println(p1.hashCode()); //33111
         p1.name = "CC";
-        System.out.println(p1.hashCode());
+        System.out.println(p1.hashCode());//33175
         set.remove(p1);//p1查无此人
         System.out.println(set);//2个对象！
         Person p3 = new Person(1001, "CC");
