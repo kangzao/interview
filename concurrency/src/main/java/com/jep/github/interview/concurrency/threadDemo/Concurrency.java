@@ -6,7 +6,7 @@ public class Concurrency {
     public static void main(String[] args) {
         Thread thread = new Thread(new DaemonRunner(), "DaemonRunner");
         thread.setDaemon(true);
-        thread.start();
+        thread.start();//主线程已经结束
     }
 
     static class DaemonRunner implements Runnable {
