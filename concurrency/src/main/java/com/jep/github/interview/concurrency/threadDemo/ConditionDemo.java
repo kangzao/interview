@@ -43,7 +43,7 @@ public class ConditionDemo {
             // 条件判断
             while (current >= items.length) {
                 // 条件不满足，等待
-                isFull.await();
+                isFull.await();//wait();
             }
             items[placeIndex] = item;
             placeIndex = (placeIndex + 1) % items.length;
