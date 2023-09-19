@@ -9,6 +9,7 @@ public class SpinLockDemo {
     public void lock() {
         Thread thread = Thread.currentThread();
         System.out.println(Thread.currentThread().getName() + "\t 加锁");
+        //设置atomicReference对象的成员变量V为 thread，如果设置成功，则退出 while，如果设置失败，自旋
         while (!atomicReference.compareAndSet(null, thread)) {
 
         }
@@ -16,6 +17,7 @@ public class SpinLockDemo {
 
     public void unLock() {
         Thread thread = Thread.currentThread();
+        //将atomicReference中的V变量 改成null
         atomicReference.compareAndSet(thread, null);
         System.out.println(Thread.currentThread().getName() + "\t UnLock over");
     }
