@@ -5,4 +5,8 @@ public class ConstantPool {
     public void sayHello() {
         System.out.println("Hello World");
     }
+
+    public void sayBye(){
+
+    }
 }
