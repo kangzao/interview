@@ -30,7 +30,7 @@ public class MyCallable implements Callable<String> {
             Future<String> future = executor.submit(callable);
             //add Future to the list, we can get return value using Future
 //            list.add(future);
-            System.out.println(new Date() + "::" + future.get());//阻塞
+            System.out.println(new Date() + "::" + future.get() + ",currentThread ==" + Thread.currentThread().getName());//阻塞
         }
         //shut down the executor service now
         executor.shutdown();
