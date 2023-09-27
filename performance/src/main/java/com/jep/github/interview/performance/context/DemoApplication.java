@@ -1,7 +1,11 @@
 package com.jep.github.interview.performance.context;
 
+import java.util.Scanner;
+
 public class DemoApplication {
     public static void main(String[] args) {
+
+        new Scanner(System.in).next();
         // 运行多线程
         MultiThreadTester test1 = new MultiThreadTester();
         test1.excute();

@@ -12,6 +12,7 @@
         <module>lambda</module>
         <module>jvm</module>
         <module>performance</module>
+        <module>web</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
