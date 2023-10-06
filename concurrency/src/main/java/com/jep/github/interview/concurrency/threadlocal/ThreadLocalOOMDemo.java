@@ -21,7 +21,7 @@ public class ThreadLocalOOMDemo {
                 threadLocal.set(new ThreadLocalOOMDemo().addBigList());
                 Thread t = Thread.currentThread();
                 System.out.println(Thread.currentThread().getName());
-                //threadLocal.remove(); //不取消注释的话就可能出现OOM
+                threadLocal.remove(); //不取消注释的话就可能出现OOM
             });
             try {
                 Thread.sleep(1000L);

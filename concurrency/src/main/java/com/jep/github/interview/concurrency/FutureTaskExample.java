@@ -9,8 +9,8 @@ public class FutureTaskExample {
         FutureTask<String> futureTask1 = new FutureTask<String>(callable1);
         FutureTask<String> futureTask2 = new FutureTask<String>(callable2);
         ExecutorService executor = Executors.newFixedThreadPool(2);
-        executor.execute(futureTask1);
-        executor.execute(futureTask2);
+        executor.execute(futureTask1);//task1 sleep 1s 然后返回线程名字
+        executor.execute(futureTask2);//task1 sleep 2s 然后返回线程名字
         while (true) {
             try {
                 if (futureTask1.isDone() && futureTask2.isDone()) {//任务1 和 任务2是否同时执行完毕
