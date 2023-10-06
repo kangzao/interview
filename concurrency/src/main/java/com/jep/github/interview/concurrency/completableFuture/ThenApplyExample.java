@@ -21,7 +21,7 @@ public class ThenApplyExample {
         });
 //        Thread.sleep(2000);
 
-// 使用 thenApply 对结果进行转换
+// 使用 thenApply 对结果进行转换  根据多态原理：
         CompletionStage<String> transformedFuture = future.thenApply(
 
                 result -> {

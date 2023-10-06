@@ -4,6 +4,8 @@ import java.util.concurrent.*;
 
 public class FutureTaskDemo {
     public static void main(String[] args) throws ExecutionException, InterruptedException, TimeoutException {
+
+
         FutureTask futureTask = new FutureTask(() -> {
             System.out.println("-----come in FutureTask");
             try {

@@ -22,7 +22,7 @@ public class FutureTaskDemo2 {
         /**         * 用于阻塞式获取结果,如果想要异步获取结果,通常都会以轮询的方式去获取结果         */
         while (true) {
             if (futureTask.isDone()) {
-                System.out.println(futureTask.get());
+                System.out.println(futureTask.get());//future.get是个阻塞方法，除了阻塞等待之外，还有第二种方式获取异步任务的执行结果：轮询
                 break;
             }
         }
