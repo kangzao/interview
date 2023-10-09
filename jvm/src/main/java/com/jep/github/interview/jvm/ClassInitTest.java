@@ -8,7 +8,7 @@ public class ClassInitTest {
         num = 2;
         number = 20;
         System.out.println(num);
-        //System.out.println(number);//报错：非法的前向引用（可以赋值，但不能调用）
+        System.out.println(number);
     }
 
     public static void main(String[] args) {
