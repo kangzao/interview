@@ -28,8 +28,8 @@ public class ArrayIncrementor extends RecursiveAction { // <1>
         } else {
             int mid = (hi - lo) / 2 + lo; // <2>计算中间值
             System.out.printf("fork: %d - %d, %d - %d %n", lo, mid, mid, hi);
-            invokeAll(new ArrayIncrementor(data, lo, mid),
-                    new ArrayIncrementor(data, mid, hi)); // <3> 将一个ForkJoinTask提交到工作线程池中执行，等待所有任务完成后返回。
+            invokeAll(new ArrayIncrementor(data, lo, mid),// 0 - 10
+                    new ArrayIncrementor(data, mid, hi)); //  10 - 20 <3> 将一个ForkJoinTask提交到工作线程池中执行，等待所有任务完成后返回。
             System.out.printf("join: %d - %d %n", lo, hi);
         }
     }
