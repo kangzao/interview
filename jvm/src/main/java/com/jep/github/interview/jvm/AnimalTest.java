@@ -52,7 +52,7 @@ public class AnimalTest {
     }
 
     public void showAnimal(Animal animal) {
-        animal.eat();//表现为：晚期绑定
+        animal.eat();//表现为：晚期绑定 cat dog 动态链接 虚方法
     }
 
     public void showHunt(Huntable h) {
