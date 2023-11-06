@@ -48,7 +48,6 @@ public class DemoApplication {
                         if (counter < 100000000) {
                             increaseCounter();
                         }
-
                     }
                 }
             }
