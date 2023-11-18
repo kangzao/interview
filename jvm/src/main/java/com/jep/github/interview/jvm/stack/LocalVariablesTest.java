@@ -20,6 +20,7 @@ public class LocalVariablesTest {
     }
 
     public String test2(Date dateP, String name2) {
+
         dateP = null;
         name2 = "xiaoming";
         double weight = 130.5;//占据两个slot
