@@ -20,7 +20,7 @@ public class ChannelTestServer {
         Channel channel = new ServerBootstrap()
                 .group(new NioEventLoopGroup())
                 // 设置底层编程模型或者说底层通信模式，一旦设置中途不允许更改。所谓的底层编程模型，其实就是JDK的BIO，NIO模型（Netty摈弃了JDK的AIO编程模型），
-                // 除此之外Netty还提供了自己编写的Epoll模型，当然日常工作中是用最多的还是NIO模型。
+                // 除此之外Netty还提供了自己编写的Epoll模型，当然日常工作中是用最多的还是NIO模型。 selector 40年  poll epoll
                 .channel(NioServerSocketChannel.class)
                 // childHandler方法主要作用是初始化和定义处理链来处理请求处理的细节
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {

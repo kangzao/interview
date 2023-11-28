@@ -64,7 +64,7 @@ public class ChannelHandlerTest_1_server extends ChannelInboundHandlerAdapter {
 
         @Override
         public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
-            System.out.println(LocalTime.now().toString() + "--channelUnregistered：Channe 从 EventLoop 中被取消");
+            System.out.println(LocalTime.now().toString() + "--channelUnregistered：Channel 从 EventLoop 中被取消");
             super.channelUnregistered(ctx);
         }
 
