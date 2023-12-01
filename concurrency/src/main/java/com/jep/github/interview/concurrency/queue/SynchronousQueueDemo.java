@@ -12,7 +12,7 @@ public class SynchronousQueueDemo {
         new Thread(() -> {
             try {
                 System.out.println("等数据....");
-                System.out.println(synchronousQueue.take());
+                System.out.println(synchronousQueue.take());//子线程挂起
                 System.out.println("执行完毕....");
             } catch (InterruptedException e) {
                 e.printStackTrace();

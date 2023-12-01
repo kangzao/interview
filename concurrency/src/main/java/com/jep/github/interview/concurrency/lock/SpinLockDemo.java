@@ -10,6 +10,7 @@ public class SpinLockDemo {
         Thread thread = Thread.currentThread();
         System.out.println(Thread.currentThread().getName() + "\t 加锁");
         //设置atomicReference对象的成员变量V为 thread，如果设置成功，则退出 while，如果设置失败，自旋
+        System.out.println("atomicReference ---" + atomicReference);
         while (!atomicReference.compareAndSet(null, thread)) {
 
         }
@@ -39,6 +40,8 @@ public class SpinLockDemo {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+
         new Thread(() -> {
             spinLockDemo.lock();
             spinLockDemo.unLock();
