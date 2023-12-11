@@ -41,11 +41,11 @@ public class TimeServer {
 
         @Override
         protected void initChannel(SocketChannel ch) throws Exception {
-            // 核心在下面两行，加入了LineBasedFrameDecoder和StringDecoder两个×××
+            // 核心在下面两行，加入了LineBasedFrameDecoder和StringDecoder两个解码器 父类是ChannelInboundHandlerAdapter
             // 所以当消息到达我们的业务处理handler即TimerServerHandler，所看到的消息
-            // 都是前面两个×××经过处理之后的结果
             ch.pipeline().addLast(new LineBasedFrameDecoder(1024));
             ch.pipeline().addLast(new StringDecoder());
+            // 都是前面两个解码器经过处理之后的结果
             ch.pipeline().addLast(new TimeServerHandler());
         }
 

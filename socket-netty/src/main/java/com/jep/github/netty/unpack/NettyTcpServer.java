@@ -52,6 +52,7 @@ class NettyTcpServerChannelHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        //每次发送的数据长度都小于102400，并且发送次数count>10次，所以发生了拆包。
         ByteBuf byteBuf = (ByteBuf) msg;
         System.out.println("长度是：" + byteBuf.readableBytes());
         System.out.println("count = " + (++count));

@@ -50,9 +50,8 @@ class NettyTcpClientChannelHandler extends ChannelInboundHandlerAdapter {
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         //发生这个事件代表通道已经顺利连接到远端，可以收发数据。我们在这里发送数据、
         //分十次发送
-        //一次发送102400字节数据
+        //一次发送102400字节数据 发送数据比mss大
         byte[] bytes = new byte[102400];
-        Arrays.fill(bytes, (byte) 10);
         for (int i = 0; i < 10; i++) {
             ctx.channel().writeAndFlush(Unpooled.copiedBuffer(bytes));
         }
