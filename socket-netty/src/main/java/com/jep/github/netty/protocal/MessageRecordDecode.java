@@ -20,7 +20,7 @@ public class MessageRecordDecode extends ByteToMessageDecoder {
         header.setType(byteBuf.readByte()); //读取一个字节的操作类型
         record.setHeader(header);
         //如果byteBuf剩下的长度还有大于4个字节，说明body不为空
-        if (byteBuf.readableBytes() > 4) {
+        if (byteBuf.readableBytes() >= 4) {
             int length = byteBuf.readInt(); //读取四个字节的长度
             header.setLength(length);
             byte[] contents = new byte[length];
