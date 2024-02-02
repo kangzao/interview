@@ -36,7 +36,7 @@ public class DemoApplication {
                 }
             }
             long end = System.currentTimeMillis();
-            System.out.println("multi thread exce time: " + (end - start) + "s");
+            System.out.println("multi thread exce time: " + (end - start) + "ms");
             System.out.println("counter: " + counter);
         }
 
@@ -63,7 +63,7 @@ public class DemoApplication {
                 increaseCounter();
             }
             long end = System.currentTimeMillis();
-            System.out.println("serial exec time: " + (end - start) + "s");
+            System.out.println("serial exec time: " + (end - start) + "ms");
             System.out.println("counter: " + counter);
         }
     }

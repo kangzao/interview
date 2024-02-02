@@ -4,7 +4,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class SpinLockDemo {
-    AtomicReference atomicReference = new AtomicReference();
+    AtomicReference atomicReference = new AtomicReference(); //临界资源
 
     public void lock() {
         Thread thread = Thread.currentThread();

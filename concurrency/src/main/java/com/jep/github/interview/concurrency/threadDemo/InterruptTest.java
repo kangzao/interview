@@ -20,7 +20,7 @@ public class InterruptTest {
         st.interrupt();
         bt.interrupt();
 
-        System.out.println("SleepThread interrupted is " + st.isInterrupted());
+        System.out.println("SleepThread interrupted is " + st.isInterrupted());//为什么重置？  jvm：表示已经响应过中断请求了  抛异常的方式响应给你了  此时 我就要重置标志位
 
         // do something
         System.out.println("BusyThread interrupted is " + bt.isInterrupted());

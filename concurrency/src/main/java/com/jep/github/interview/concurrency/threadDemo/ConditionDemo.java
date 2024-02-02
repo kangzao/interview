@@ -43,12 +43,12 @@ public class ConditionDemo {
             // 条件判断
             while (current >= items.length) {
                 // 条件不满足，等待
-                isFull.await();//wait();
+                isFull.await();//wait();  notify（） synchronized wait 此线程进入waitset队列   等待被notify
             }
             items[placeIndex] = item;
             placeIndex = (placeIndex + 1) % items.length;
-            ++current;
-            //唤醒等待的线程
+            ++current;//放了几个元素
+            //唤醒等待的线程  通知消费者消费
             isEmpty.signalAll();
             // 释放锁
             lock.unlock();
@@ -64,7 +64,7 @@ public class ConditionDemo {
             Object item = null;
             lock.lock();
             while (current <= 0) {
-                isEmpty.await();
+                isEmpty.await();//wait方法
             }
             item = items[removeIndex];
             removeIndex = (removeIndex + 1) % items.length;
