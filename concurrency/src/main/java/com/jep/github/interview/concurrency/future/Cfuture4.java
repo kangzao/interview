@@ -16,9 +16,9 @@ public class Cfuture4 {
                 e.printStackTrace();
             }
             System.out.println("-----计算结束耗时1秒钟，result： " + result);
-            if (result > 5) {
-                int age = 10 / 0;
-            }
+//            if (result > 5) {
+            int age = 10 / 0;
+//            }
             return result;
         }).whenComplete((v, e) -> {
             if (e == null) {

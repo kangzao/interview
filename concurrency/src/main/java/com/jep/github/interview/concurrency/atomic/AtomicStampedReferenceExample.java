@@ -17,7 +17,7 @@ public class AtomicStampedReferenceExample {
 
         Thread thread2 = new Thread(() -> {
             int stamp = atomicStampedRef.getStamp();
-// 先将变量的值从0修改为1，再修改回0
+// 先将变量的值从0修改为1，再修改回0   1 1
             atomicStampedRef.compareAndSet(0, 1, stamp, stamp + 1);
             atomicStampedRef.compareAndSet(1, 0, stamp + 1, stamp + 2);
             System.out.println("Thread 2: Value modified back to 0");

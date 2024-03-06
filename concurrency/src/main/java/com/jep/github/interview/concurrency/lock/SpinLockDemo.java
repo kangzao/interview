@@ -1,5 +1,6 @@
 package com.jep.github.interview.concurrency.lock;
 
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -35,6 +36,8 @@ public class SpinLockDemo {
             }
             spinLockDemo.unLock();
         }, "A").start(); //暂停一会儿线程，保证A线程先于B线程启动并完成
+
+
         try {
             TimeUnit.SECONDS.sleep(1);
         } catch (InterruptedException e) {
@@ -43,7 +46,9 @@ public class SpinLockDemo {
 
 
         new Thread(() -> {
+            System.out.println(new Date());
             spinLockDemo.lock();
+            System.out.println(new Date());
             spinLockDemo.unLock();
         }, "B").start();
     }

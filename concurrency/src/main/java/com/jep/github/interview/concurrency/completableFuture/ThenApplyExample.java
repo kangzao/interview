@@ -23,7 +23,6 @@ public class ThenApplyExample {
 
 // 使用 thenApply 对结果进行转换  根据多态原理：
         CompletionStage<String> transformedFuture = future.thenApply(
-
                 result -> {
                     System.out.println("tf---" + Thread.currentThread().getName());
                     return result + ", World!";

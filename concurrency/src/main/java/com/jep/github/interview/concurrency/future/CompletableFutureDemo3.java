@@ -27,6 +27,7 @@ public class CompletableFutureDemo3 {
 
         System.out.println(CompletableFuture.supplyAsync(() -> "resultA").thenRun(() -> {
         }).join());
+
         System.out.println(CompletableFuture.supplyAsync(() -> "resultA").thenAccept(resultA -> {
         }).join());
         System.out.println(CompletableFuture.supplyAsync(() -> "resultA").thenApply(resultA -> resultA + " resultB").join());

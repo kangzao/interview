@@ -1,5 +1,6 @@
 package com.jep.github.interview.concurrency.completableFuture;
 
+import java.util.Date;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -37,7 +38,10 @@ public class AccountTransactionExample {
             return new AccountInfo(balance, transaction);
         });
 // 输出账户信息
-        System.out.println(combinedFuture.get()); // 输出 "AccountInfo{balance=1000.0, transaction=Transaction{id=1, date='2023-05-25', amount=500.0}}"
+        System.out.println(new Date());
+        // 输出 "AccountInfo{balance=1000.0, transaction=Transaction{id=1, date='2023-05-25', amount=500.0}}"
+        System.out.println(combinedFuture.get());
+        System.out.println(new Date());
     }
 }
 

@@ -37,7 +37,11 @@ public class CompletableFutureExample {
             });
         });
         //把foodServe的结果进行了消费  order消费foodServe的返回值
-        CompletableFuture<String> order = foodServe.thenApply(orderComplete -> orderComplete + "：Order Completed..");
+        CompletableFuture<String> order = foodServe.thenApply(
+                orderComplete -> {
+                    System.out.println("orderThread == " + Thread.currentThread().getName());
+                    return orderComplete + "：Order Completed..";
+                });
         try {
             System.out.println(order.get());
         } catch (Exception e) {
