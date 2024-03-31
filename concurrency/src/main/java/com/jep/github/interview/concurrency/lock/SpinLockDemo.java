@@ -7,13 +7,14 @@ import java.util.concurrent.atomic.AtomicReference;
 public class SpinLockDemo {
     AtomicReference atomicReference = new AtomicReference(); //临界资源
 
-    public void lock() {
+    public void lock() throws InterruptedException {
         Thread thread = Thread.currentThread();
         System.out.println(Thread.currentThread().getName() + "\t 加锁");
         //设置atomicReference对象的成员变量V为 thread，如果设置成功，则退出 while，如果设置失败，自旋
         System.out.println("atomicReference ---" + atomicReference);
         while (!atomicReference.compareAndSet(null, thread)) {
-
+            TimeUnit.MILLISECONDS.sleep(200);
+            System.out.println("execute lock method ===" + thread.getName());
         }
     }
 
@@ -21,13 +22,18 @@ public class SpinLockDemo {
         Thread thread = Thread.currentThread();
         //将atomicReference中的V变量 改成null
         atomicReference.compareAndSet(thread, null);
+
         System.out.println(Thread.currentThread().getName() + "\t UnLock over");
     }
 
     public static void main(String[] args) {
         SpinLockDemo spinLockDemo = new SpinLockDemo();
         new Thread(() -> {
-            spinLockDemo.lock();
+            try {
+                spinLockDemo.lock();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             try {
                 TimeUnit.SECONDS.sleep(5);
                 System.out.println(Thread.currentThread().getName() + "线程结束睡眠");
@@ -47,7 +53,11 @@ public class SpinLockDemo {
 
         new Thread(() -> {
             System.out.println(new Date());
-            spinLockDemo.lock();
+            try {
+                spinLockDemo.lock();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             System.out.println(new Date());
             spinLockDemo.unLock();
         }, "B").start();

@@ -36,6 +36,7 @@ public class InterruptTest {
                 try {
                     TimeUnit.SECONDS.sleep(1);
                     System.out.println("sleeping in SleepRunner");
+//                    100
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

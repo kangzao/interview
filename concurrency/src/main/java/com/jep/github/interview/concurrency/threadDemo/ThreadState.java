@@ -17,13 +17,18 @@ public class ThreadState {
         a.setName("Thread A");
         Thread b = new Thread(() -> {
             synchronized (lock) {
+                try {
+                    Thread.sleep(30000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         b.setName("Thread B");
         a.start();
         b.start();
         try {
-            Thread.sleep(3000);
+            Thread.sleep(30000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

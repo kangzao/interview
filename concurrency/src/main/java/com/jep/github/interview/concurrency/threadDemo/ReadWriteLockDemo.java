@@ -3,14 +3,11 @@ package com.jep.github.interview.concurrency.threadDemo;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class ReadWriteLockDemo {
-    private static final ReentrantReadWriteLock reentrantReadWriteLock = new ReentrantReadWriteLock(
-            false);
+    private static final ReentrantReadWriteLock reentrantReadWriteLock = new ReentrantReadWriteLock(false);
     // 读锁
-    private static final ReentrantReadWriteLock.ReadLock readLock = reentrantReadWriteLock
-            .readLock();
+    private static final ReentrantReadWriteLock.ReadLock readLock = reentrantReadWriteLock.readLock();
     // 写锁
-    private static final ReentrantReadWriteLock.WriteLock writeLock = reentrantReadWriteLock
-            .writeLock();
+    private static final ReentrantReadWriteLock.WriteLock writeLock = reentrantReadWriteLock.writeLock();
 
     private static void read() {
         // 获取读锁，读锁之间不会互斥

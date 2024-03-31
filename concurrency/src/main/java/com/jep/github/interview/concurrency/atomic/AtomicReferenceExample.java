@@ -16,7 +16,7 @@ public class AtomicReferenceExample {
 
         // 线程2修改引用类型变量的值
         Thread thread2 = new Thread(() -> {
-            String oldValue = atomicReference.get();
+            String oldValue = atomicReference.get();//new value
             String newValue = "another new value";
             boolean success = atomicReference.compareAndSet(oldValue, newValue);
             System.out.println("Thread 2: success = " + success + ", oldValue = " + oldValue + ", newValue = " + newValue);
