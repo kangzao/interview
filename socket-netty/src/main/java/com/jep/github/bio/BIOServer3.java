@@ -25,11 +25,9 @@ public class BIOServer3 {
             final Socket socket = serverSocket.accept();
             System.out.println("连接到一个客户端");
             //就创建一个线程，与之通讯(单独写一个方法)
-            newCachedThreadPool.execute(new Runnable() {
-                public void run() {//我们重写
-                    //可以和客户端通讯
-                    handler(socket);
-                }
+            newCachedThreadPool.execute(() -> {//我们重写   serverSocketChannel -> socketChannel
+                //可以和客户端通讯
+                handler(socket);
             });
         }
     }

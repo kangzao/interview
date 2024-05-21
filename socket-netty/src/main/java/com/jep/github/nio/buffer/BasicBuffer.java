@@ -18,6 +18,8 @@ public class BasicBuffer {
         //如何从 buffer 读取数据
         //将 buffer 转换，读写切换(!!!)  此时position会增大到5
         intBuffer.flip();
+        intBuffer.position(1);//表示从第二个位置开始读取
+        intBuffer.limit(3);//缓冲区的终点，极限位置，不能操作
         //此时pos == 0
         while (intBuffer.hasRemaining()) {
             System.out.println(intBuffer.get()); //position会增大到5

@@ -20,20 +20,15 @@ public class HttpServer {
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
             ServerBootstrap b = new ServerBootstrap();
-            b.group(bossGroup, workerGroup)
-                    .channel(NioServerSocketChannel.class)
-                    .localAddress(new InetSocketAddress(port))
-                    .childHandler(new ChannelInitializer<SocketChannel>() {
-                        @Override
-                        public void initChannel(SocketChannel ch) {
-                            ch.pipeline()
-                                    .addLast("codec", new HttpServerCodec())                  // HTTP 编解码
-                                    .addLast("compressor", new HttpContentCompressor())       // HttpContent 压缩
-                                    .addLast("aggregator", new HttpObjectAggregator(65536))   // HTTP 消息聚合
-                                    .addLast("handler", new HttpServerHandler());             // 自定义业务逻辑处理器
-                        }
-                    })
-                    .childOption(ChannelOption.SO_KEEPALIVE, true);
+            b.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class).localAddress(new InetSocketAddress(port)).childHandler(new ChannelInitializer<SocketChannel>() {
+                @Override
+                public void initChannel(SocketChannel ch) {
+                    ch.pipeline().addLast("codec", new HttpServerCodec())                  // HTTP 编解码
+                            .addLast("compressor", new HttpContentCompressor())       // HttpContent 压缩
+                            .addLast("aggregator", new HttpObjectAggregator(65536))   // HTTP 消息聚合
+                            .addLast("handler", new HttpServerHandler());             // 自定义业务逻辑处理器
+                }
+            }).childOption(ChannelOption.SO_KEEPALIVE, true);
             //ChannelFuture提供操作完成时一种异步通知的方式。一般在Socket编程中，等待响应结果都是同步阻塞的，而Netty则不会造成阻塞，因为ChannelFuture是采取类似观察者模式的形式进行获取结果。
             ChannelFuture f = b.bind().sync();
             System.out.println("Http Server started， Listening on " + port);
