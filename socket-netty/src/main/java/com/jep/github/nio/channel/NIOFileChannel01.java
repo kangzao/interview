@@ -21,7 +21,7 @@ public class NIOFileChannel01 {
         //将 str 放入 byteBuffer
         byteBuffer.put(str.getBytes());
 
-        //对 byteBuffer 进行 flip
+        //对 byteBuffer 进行 flip  写切换到读模式
         byteBuffer.flip();
 
         //将 byteBuffer 数据写入到 fileChannel
