@@ -26,7 +26,7 @@ public class GroupChatServer {
             listenChannel.socket().bind(new InetSocketAddress(PORT));
             //设置非阻塞模式
             listenChannel.configureBlocking(false);
-            //将该 listenChannel 注册到 selector
+            //将通道（Channel）注册到 Selector上,并指定感兴趣的事件类型。
             listenChannel.register(selector, SelectionKey.OP_ACCEPT);
         } catch (IOException e) {
             e.printStackTrace();
