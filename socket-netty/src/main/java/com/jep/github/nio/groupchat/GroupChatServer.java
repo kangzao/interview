@@ -37,14 +37,17 @@ public class GroupChatServer {
         try {
             //循环处理
             while (true) {
+                //用于非阻塞地等待一个或多个 NIO 通道（例如 SocketChannel、ServerSocketChannel、DatagramChannel 或 FileChannel）的就绪事件
+                //这个方法会阻塞，直到至少有一个已注册的通道就绪，或者当前线程被中断，或者选择器被关闭。如果方法返回，它将返回一个整数，表示已就绪的通道数量
                 int count = selector.select();
                 if (count > 0) { //有事件处理
-                    // 遍历得到 selectionKey 集合
+                    // 遍历得到 selectionKey 集合,SelectionKey 代表了已就绪的通道和它们的事件
                     Iterator<SelectionKey> iterator = selector.selectedKeys().iterator();
                     while (iterator.hasNext()) {
-                        //取出 selectionkey
+                        //SelectionKey 是 Java NIO 库中的一个类，它表示一个注册到 Selector 上的通道（Channel）的键（Key）。每个 SelectionKey 都与一个特定的 Selector
+                        //和一个特定的通道（如 SocketChannel、ServerSocketChannel 等）相关联，并且包含了一些状态信息，这些信息表明通道是否准备好进行读取、写入或连接操作。
                         SelectionKey key = iterator.next();
-                        //监听到 accept
+                        //监听到 accept 如果通道是 ServerSocketChannel 并且准备好接收新连接，则返回 true
                         if (key.isAcceptable()) {
                             SocketChannel sc = listenChannel.accept();
                             sc.configureBlocking(false);
@@ -53,7 +56,7 @@ public class GroupChatServer {
                             //提示
                             System.out.println(sc.getRemoteAddress() + " 上线 ");
                         }
-                        if (key.isReadable()) {//通道发送read事件，即通道是可读的状态
+                        if (key.isReadable()) {//通道发送read事件，即通道是可读的状态 如果通道是可读的，则返回 true。
                             // 处理读(专门写方法..)
                             readData(key);
                         }
@@ -79,6 +82,8 @@ public class GroupChatServer {
             channel = (SocketChannel) key.channel();
             //创建 buffer
             ByteBuffer buffer = ByteBuffer.allocate(1024);
+            //从网络套接字通道中读取数据到一个 ByteBuffer 对象
+            //返回值表示实际读取的字节数。如果返回0，表示没有更多数据可读，但这并不意味着通道已经关闭。如果返回-1，表示通道已经关闭或者已经到达流的末尾（EOF）。
             int count = channel.read(buffer);
             //根据 count 的值做处理
             if (count > 0) {
@@ -107,6 +112,8 @@ public class GroupChatServer {
 
         System.out.println("服务器转发消息中...");
         //遍历所有注册到 selector 上的 SocketChannel,并排除 self
+        //Selector#keys() 方法是 Java NIO 中 Selector 类的一个方法，它返回当前处于就绪状态的 SelectionKey 集合。
+        //这个方法是同步的，意味着它会阻塞调用线程，直到至少有一个 SelectionKey 变为可操作状态，或者直到超时时间到达。
         for (SelectionKey key : selector.keys()) {
             //通过 key 取出对应的 SocketChannel
             Channel targetChannel = key.channel();
