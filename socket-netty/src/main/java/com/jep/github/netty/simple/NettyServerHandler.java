@@ -41,7 +41,7 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
         //writeAndFlush 是 write + flush
         //将数据写入到缓存，并刷新
-        //一般讲，我们对这个发送的数据进行编码
+        //一般讲，我们对这个发送的数据进行编码  用于创建一个包含给定数据的 ByteBuf，并且这个 ByteBuf 的数据是复制（拷贝）自原始数据源的。
         ctx.writeAndFlush(Unpooled.copiedBuffer("hello, 客户端~(>^ω^<)喵1", CharsetUtil.UTF_8));
     }
     

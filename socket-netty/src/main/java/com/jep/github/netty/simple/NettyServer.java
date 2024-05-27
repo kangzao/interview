@@ -11,9 +11,9 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 public class NettyServer {
-    
+
     public static void main(String[] args) throws Exception {
-        
+
         //创建BossGroup 和 WorkerGroup
         //说明
         //1. 创建两个线程组 bossGroup 和 workerGroup
@@ -23,7 +23,7 @@ public class NettyServer {
         //   默认实际 cpu核数 * 2
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
         EventLoopGroup workerGroup = new NioEventLoopGroup(); //8
-        
+
         try {
             //创建服务器端的启动对象，配置参数
             ServerBootstrap bootstrap = new ServerBootstrap();
@@ -33,6 +33,8 @@ public class NettyServer {
                     .option(ChannelOption.SO_BACKLOG, 128) // 设置线程队列得到连接个数
                     .childOption(ChannelOption.SO_KEEPALIVE, true) //设置保持活动连接状态
             //          .handler(null) // 该 handler对应 bossGroup , childHandler 对应 workerGroup
+            //  为 ServerBootstrap 设置了一个 ChildHandler，它是一个 ChannelInitializer，该 ChannelInitializer 在新的 SocketChannel 被接受时，
+            //  向该 Channel 的 ChannelPipeline 添加了一个 NettyServerHandler 实例。这样，所有新连接的 I/O 事件和数据都将由 NettyServerHandler 处理。
                     .childHandler(new ChannelInitializer<SocketChannel>() {//创建一个通道初始化对象(匿名对象)
                         //给pipeline 设置处理器
                         @Override
@@ -48,7 +50,7 @@ public class NettyServer {
             //启动服务器(并绑定端口)
             ChannelFuture cf = bootstrap.bind(6668).sync();
 
-            //给cf 注册监听器，监控我们关心的事件
+            //用于监听 ChannelFuture 对象的状态变化。ChannelFuture 表示异步操作的结果，例如连接、绑定或写操作。
 
             cf.addListener(new ChannelFutureListener() {
                 @Override
