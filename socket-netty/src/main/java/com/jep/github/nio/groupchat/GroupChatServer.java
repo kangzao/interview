@@ -37,7 +37,6 @@ public class GroupChatServer {
         try {
             //循环处理
             while (true) {
-                //用于非阻塞地等待一个或多个 NIO 通道（例如 SocketChannel、ServerSocketChannel、DatagramChannel 或 FileChannel）的就绪事件
                 //这个方法会阻塞，直到至少有一个已注册的通道就绪，或者当前线程被中断，或者选择器被关闭。如果方法返回，它将返回一个整数，表示已就绪的通道数量
                 int count = selector.select();
                 if (count > 0) { //有事件处理
