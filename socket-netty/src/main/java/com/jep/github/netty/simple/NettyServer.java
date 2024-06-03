@@ -32,9 +32,9 @@ public class NettyServer {
                     .channel(NioServerSocketChannel.class) //使用NioSocketChannel 作为服务器的通道实现
                     .option(ChannelOption.SO_BACKLOG, 128) // 设置线程队列得到连接个数
                     .childOption(ChannelOption.SO_KEEPALIVE, true) //设置保持活动连接状态
-            //          .handler(null) // 该 handler对应 bossGroup , childHandler 对应 workerGroup
-            //  为 ServerBootstrap 设置了一个 ChildHandler，它是一个 ChannelInitializer，该 ChannelInitializer 在新的 SocketChannel 被接受时，
-            //  向该 Channel 的 ChannelPipeline 添加了一个 NettyServerHandler 实例。这样，所有新连接的 I/O 事件和数据都将由 NettyServerHandler 处理。
+                    //          .handler(null) // 该 handler对应 bossGroup , childHandler 对应 workerGroup
+                    //  为 ServerBootstrap 设置了一个 ChildHandler，它是一个 ChannelInitializer，该 ChannelInitializer 在新的 SocketChannel 被接受时，
+                    //  向该 Channel 的 ChannelPipeline 添加了一个 NettyServerHandler 实例。这样，所有新连接的 I/O 事件和数据都将由 NettyServerHandler 处理。
                     .childHandler(new ChannelInitializer<SocketChannel>() {//创建一个通道初始化对象(匿名对象)
                         //给pipeline 设置处理器
                         @Override
@@ -64,7 +64,7 @@ public class NettyServer {
             });
             //对关闭通道进行监听
             cf.channel().closeFuture().sync();
-        }finally {
+        } finally {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
         }

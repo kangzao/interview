@@ -21,7 +21,7 @@ public class BasicBuffer {
         intBuffer.position(1);//表示从第二个位置开始读取
         intBuffer.limit(3);//缓冲区的终点，极限位置，不能操作
         //此时pos == 0
-        while (intBuffer.hasRemaining()) {
+        while (intBuffer.hasRemaining()) {  // 0 2 4 6 8
             System.out.println(intBuffer.get()); //position会增大到5
         }
     }
