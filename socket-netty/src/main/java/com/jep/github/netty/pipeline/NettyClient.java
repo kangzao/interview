@@ -61,7 +61,7 @@ public class NettyClient {
                     }
                 });
 
-        ChannelFuture future = clientBootstrap.connect("localhost", 8888).sync();
+        ChannelFuture future = clientBootstrap.connect("localhost", 8188).sync();
         future.channel().closeFuture().sync();
     }
 }

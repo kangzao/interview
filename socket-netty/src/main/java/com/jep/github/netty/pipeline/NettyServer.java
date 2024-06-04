@@ -22,8 +22,7 @@ public class NettyServer {
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         ServerBootstrap b = new ServerBootstrap();
 
-        b.group(bossGroup, workerGroup)
-                .channel(NioServerSocketChannel.class)//指定 channel 类型为 NioServerSocketChannel
+        b.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class)//指定 channel 类型为 NioServerSocketChannel
                 .option(ChannelOption.SO_BACKLOG, 1024) //用于设置服务器端TCP连接的最大排队连接数
                 .childHandler(new ChannelInitializer<SocketChannel>() {
                     @Override
@@ -63,7 +62,7 @@ public class NettyServer {
                     }
                 });
 
-        ChannelFuture future = b.bind(8888).sync();
+        ChannelFuture future = b.bind(8188).sync();
         future.channel().closeFuture().sync();
     }
 }
