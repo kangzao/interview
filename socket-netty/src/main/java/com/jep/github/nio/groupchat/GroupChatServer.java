@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 
 public class GroupChatServer {
@@ -87,7 +88,8 @@ public class GroupChatServer {
             //根据 count 的值做处理
             if (count > 0) {
                 //把缓存区的数据转成字符串
-                String msg = new String(buffer.array());
+//                String msg = new String(buffer.array(),StandardCharsets.UTF_8);  把数据读取到了长度为1024的byte类型的数组中，而实际上只有XXXX这些你想要的数据，剩下的数据如果都读取出来就是一堆方框。改正的办法是:
+                String msg = new String(buffer.array(), 0, count, StandardCharsets.UTF_8);
                 //输出该消息
                 System.out.println("form客户端:" + msg);
                 //向其它的客户端转发消息(去掉自己),专门写一个方法来处理
