@@ -8,6 +8,7 @@ public class CompletableFutureDemo2 {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         CompletableFuture completableFuture = CompletableFuture.supplyAsync(() -> {
             try {
+                System.out.println(Thread.currentThread().getName());
                 TimeUnit.SECONDS.sleep(1);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -16,11 +17,11 @@ public class CompletableFutureDemo2 {
         });
 
 //        去掉注释后上面代码计算完成，返回结果
-        try {
-            TimeUnit.SECONDS.sleep(2);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+////            TimeUnit.SECONDS.sleep(2);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         System.out.println(completableFuture.getNow(444));
     }
 }

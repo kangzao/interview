@@ -21,10 +21,12 @@ public class Cfuture4 {
 //            }
             return result;
         }).whenComplete((v, e) -> {
+            System.out.println(Thread.currentThread().getName());
             if (e == null) {
                 System.out.println("-----result: " + v);
             }
         }).exceptionally(e -> {
+            System.out.println(Thread.currentThread().getName());
             System.out.println("-----exception: " + e.getCause() + "\t" + e.getMessage());
             return -44;
         });

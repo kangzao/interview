@@ -18,15 +18,19 @@ public class CompletableFutureDemo5 {
             System.out.println("111");
             return 1024;
         }).handle((f, e) -> {
+            System.out.println(Thread.currentThread().getName() + "==step 1");
             int age = 10 / 0;
             System.out.println("222");
             return f + 1;
         }).handle((f, e) -> {
+            System.out.println(Thread.currentThread().getName() + "==step 2");
             System.out.println("333");
             return f + 1;
         }).whenCompleteAsync((v, e) -> {
+            System.out.println(Thread.currentThread().getName() + "==step 3");
             System.out.println("*****v: " + v);
         }).exceptionally(e -> {
+            System.out.println(Thread.currentThread().getName() + "==step 4");
             e.printStackTrace();
             return null;
         });
