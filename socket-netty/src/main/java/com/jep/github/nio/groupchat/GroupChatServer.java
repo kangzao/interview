@@ -21,7 +21,7 @@ public class GroupChatServer {
         try {
             //得到选择器
             selector = Selector.open();
-            //ServerSocketChannel
+            //ServerSocketChannel   socketchannel
             listenChannel = ServerSocketChannel.open();
             //绑定端口
             listenChannel.socket().bind(new InetSocketAddress(PORT));

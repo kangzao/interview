@@ -10,7 +10,7 @@ import java.net.Socket;
 public class BIOServer {
 
     public static void main(String[] args) throws Exception {
-        ServerSocket serverSocket = new ServerSocket(8080);
+        ServerSocket serverSocket = new ServerSocket(8888);
         System.out.println("服务器启动成功");
         while (!serverSocket.isClosed()) {
             Socket request = serverSocket.accept();// 阻塞

@@ -15,7 +15,7 @@ public class BIOClient {
     private static Charset charset = Charset.forName("UTF-8");
 
     public static void main(String[] args) throws IOException {
-        Socket s = new Socket("localhost", 8080);
+        Socket s = new Socket("localhost", 8888);
         OutputStream out = s.getOutputStream();
 
         Scanner scanner = new Scanner(System.in);
