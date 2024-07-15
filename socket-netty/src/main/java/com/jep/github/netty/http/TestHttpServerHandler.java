@@ -15,47 +15,29 @@ import java.net.URI;
  * 2. HttpObject 客户端和服务器端相互通讯的数据被封装成 HttpObject
  */
 public class TestHttpServerHandler extends SimpleChannelInboundHandler<HttpObject> {
-
-    //channelRead0 读取客户端数据
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, HttpObject msg) throws Exception {
+        if(msg instanceof HttpRequest){ //判断该  HttpObject msg 参数是否是 Http 请求
+            System.out.println(ctx.channel().remoteAddress() + " 客户端请求数据 ... ");
 
-        System.out.println("对应的channel=" + ctx.channel() + " pipeline=" + ctx
-                .pipeline() + " 通过pipeline获取channel" + ctx.pipeline().channel());
+            // 准备给客户端浏览器发送的数据
+            ByteBuf byteBuf = Unpooled.copiedBuffer("Hello Client", CharsetUtil.UTF_8);
 
-        System.out.println("当前ctx的handler=" + ctx.handler());
+            // 设置 HTTP 版本, 和 HTTP 的状态码, 返回内容
+            DefaultFullHttpResponse defaultFullHttpResponse =
+                    new DefaultFullHttpResponse(HttpVersion.HTTP_1_1,
+                            HttpResponseStatus.OK, byteBuf);
 
-        //判断 msg 是不是 httprequest请求
-        if (msg instanceof HttpRequest) {
+            // 设置 HTTP 请求头
+            // 设置内容类型是文本类型
+            defaultFullHttpResponse.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain");
+            // 设置返回内容的长度
+            defaultFullHttpResponse.headers().set(
+                    HttpHeaderNames.CONTENT_LENGTH,
+                    byteBuf.readableBytes());
 
-            System.out.println("ctx 类型=" + ctx.getClass());
-
-            System.out.println("pipeline hashcode:" + ctx.pipeline().hashCode() + " TestHttpServerHandler hash=" + this.hashCode());
-
-            System.out.println("msg 类型=" + msg.getClass());
-            System.out.println("客户端地址" + ctx.channel().remoteAddress());
-
-            //获取到
-            HttpRequest httpRequest = (HttpRequest) msg;
-            //获取uri, 过滤指定的资源
-            URI uri = new URI(httpRequest.uri());
-            if ("/favicon.ico".equals(uri.getPath())) {
-                System.out.println("请求了 favicon.ico, 不做响应");
-                return;
-            }
-            //回复信息给浏览器 [http协议]
-
-            ByteBuf content = Unpooled.copiedBuffer("hello, 我是服务器", CharsetUtil.UTF_8);
-
-            //构造一个http的相应，即 httpresponse
-            FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK, content);
-
-            response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain");
-            response.headers().set(HttpHeaderNames.CONTENT_LENGTH, content.readableBytes());
-
-            //将构建好 response返回
-            ctx.writeAndFlush(response);
-
+            // 写出 HTTP 数据
+            ctx.writeAndFlush(defaultFullHttpResponse);
         }
     }
 }
