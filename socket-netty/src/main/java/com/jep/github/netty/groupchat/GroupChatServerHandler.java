@@ -13,6 +13,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+/**
+ *  handler的生命周期回调接口调用顺序:
+ *  handlerAdded -> channelRegistered -> channelActive -> channelRead -> channelReadComplete-> channelInactive -> channelUnRegistered -> handlerRemoved
+ * handlerAdded: 当一个新的ChannelHandler被添加到ChannelPipeline时调用。
+ * channelRegistered: 当Channel成功注册到EventLoop上时调用。
+ * channelActive: 当Channel激活，可以开始接收和发送数据时调用。
+ * channelRead: 当从Channel中读取到数据时调用。
+ * channelReadComplete: 当一次读取操作完成时调用。
+ * channelInactive: 当Channel变为非激活状态时调用。
+ * channelUnregistered: 当Channel从EventLoop上注销时调用。
+ * handlerRemoved: 当ChannelHandler从ChannelPipeline中移除时调用。
+ *
+ */
+
 public class GroupChatServerHandler extends SimpleChannelInboundHandler<String> {
     //定义一个channle 组，管理所有的channel
     //GlobalEventExecutor.INSTANCE) 是全局的事件执行器，是一个单例
@@ -25,8 +40,8 @@ public class GroupChatServerHandler extends SimpleChannelInboundHandler<String> 
         Channel channel = ctx.channel();
         //将该客户加入聊天的信息推送给其它在线的客户端
         /*
-        该方法会将 channelGroup 中所有的channel 遍历，并发送 消息，
-        我们不需要自己遍历
+            该方法会将 channelGroup 中所有的channel 遍历，并发送 消息，
+            我们不需要自己遍历
          */
         System.out.println("handlerAdded:"+ctx);
         channelGroup.writeAndFlush("[客户端]" + channel.remoteAddress() + " 加入聊天" + sdf.format(new java.util.Date()) + " \n");
@@ -36,6 +51,7 @@ public class GroupChatServerHandler extends SimpleChannelInboundHandler<String> 
     }
 
     //断开连接, 将xx客户离开信息推送给当前在线的客户
+    //当一个 Channel 关闭时，所有注册到该 Channel 的 ChannelHandler 也会被自动从 ChannelPipeline 中移除。
     //handlerRemoved 是一个在 ChannelHandler 生命周期中调用的方法，它在 Handler 被从 ChannelPipeline 中移除时触发
     @Override
     public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
@@ -79,3 +95,4 @@ public class GroupChatServerHandler extends SimpleChannelInboundHandler<String> 
         ctx.close();
     }
 }
+
