@@ -13,6 +13,7 @@
         <module>jvm</module>
         <module>performance</module>
         <module>web</module>
+        <module>spi</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

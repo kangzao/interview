@@ -1,0 +1,2 @@
+com.jep.github.spi.impl.Log4j
+com.jep.github.spi.impl.Logback
