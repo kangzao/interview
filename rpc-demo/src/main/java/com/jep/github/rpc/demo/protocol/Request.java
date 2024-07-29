@@ -4,13 +4,16 @@ import java.io.Serializable;
 import java.util.Arrays;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * 请求体
  * @author enping.jep
  * @date 2024/07/26 18:10
  **/
-@Data
+@Getter
+@Setter
 public class Request  implements Serializable {
     private String serviceName; // 请求的Service类名
 

@@ -1,13 +1,16 @@
 package com.jep.github.rpc.demo.protocol;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * 消息头对应的实体类
  * @author enping.jep
  * @date 2024/07/26 17:53
  **/
-@Data
+@Getter
+@Setter
 public class Header {
     private short magic; // 魔数
     private byte version; // 版本号
