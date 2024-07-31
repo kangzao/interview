@@ -6,10 +6,10 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
-public class HelloWordServer {
+public class HelloWorldServer {
     private int port;
 
-    public HelloWordServer(int port) {
+    public HelloWorldServer(int port) {
         this.port = port;
     }
 
@@ -33,7 +33,7 @@ public class HelloWordServer {
     }
 
     public static void main(String[] args) {
-        HelloWordServer server = new HelloWordServer(7788);
+        HelloWorldServer server = new HelloWorldServer(7788);
         server.start();
     }
 }
