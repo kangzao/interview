@@ -15,12 +15,14 @@ public class ServerChannelInitializer extends ChannelInitializer<SocketChannel> 
         ChannelPipeline pipeline = socketChannel.pipeline();
 
         ByteBuf delimiter = Unpooled.copiedBuffer("\t".getBytes());
+        //入站
         pipeline.addLast("framer", new DelimiterBasedFrameDecoder(2048, delimiter));
-        // 字符串解码 和 编码
+        //入站
         pipeline.addLast("decoder", new StringDecoder());
+        //出站
         pipeline.addLast("encoder", new StringEncoder());
 
-        // 自己的逻辑Handler
+        // 自己的逻辑Handler 入站
         pipeline.addLast("handler", new ServerHandler());
     }
 }
