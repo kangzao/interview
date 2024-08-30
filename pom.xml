@@ -15,6 +15,7 @@
         <module>web</module>
         <module>spi</module>
         <module>rpc-demo</module>
+        <module>core</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

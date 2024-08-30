@@ -1,9 +1,6 @@
 package com.jep.github.interview.concurrency.future;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
 public class FutureDemo {
     public static void main(String[] args) {
@@ -22,7 +19,7 @@ public class FutureDemo {
         });
 
         try {
-            Integer result = (Integer) future.get();
+            Integer result = (Integer) future.get(500, TimeUnit.MILLISECONDS);
             System.out.println(result);
         } catch (Exception e) {
             e.printStackTrace();

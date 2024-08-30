@@ -9,35 +9,31 @@ import java.util.List;
 public class MessageProtocolDecoder extends ByteToMessageDecoder {
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
-        //记录初始的读偏移量，用于拆包情况下的偏移量回滚
+        // 记录初始的读偏移量，用于拆包情况下的偏移量回滚
         int beginReadIndex = in.readerIndex();
 
-
-        //首先读数据的长度出来先
-
+        // 首先读数据的长度出来先
         int len = in.readInt();
 
-        if (in.readableBytes() < len){
-            //这种情况下就是发生了拆包问题，因读取的数据长度没有len长，这个包还有数据没有到达。
-            //重置读偏移量,等待下次重新读写
+        // 如果可读的字节数小于数据长度，说明数据不完整，需要处理拆包问题
+        if (in.readableBytes() < len) {
+            // 重置读偏移量，等待下次读取
             in.readerIndex(beginReadIndex);
-            //直接返回，等待下次
+            // 直接返回，等待下次读取完成
             return;
         }
 
+        // 能到这里，说明数据包是完整的
 
-
-        //能到这里，就证明包是完整的
-
-        //读数据
+        // 读取数据
         byte[] data = new byte[len];
         in.readBytes(data);
 
-
-
+        // 创建MessageProtocol对象封装数据
         MessageProtocol messageProtocol = new MessageProtocol(data);
 
-        //写出给下一个Handler处理。
+        // 将封装好的MessageProtocol对象添加到输出列表，供后续处理
         out.add(messageProtocol);
     }
+
 }
