@@ -31,8 +31,7 @@ public class NettyServer {
                         ChannelPipeline pipeline = ch.pipeline();
                         pipeline.addLast(new CustomInboundHandler1());//在ChannelPipeline的末尾添加ChannelHandler
                         pipeline.addLast(new CustomInboundHandler2());
-                        pipeline.addLast(new CustomOutboundHandler1());
-                        pipeline.addLast(new CustomOutboundHandler2());
+
                         pipeline.addLast(new SimpleChannelInboundHandler<ByteBuf>() {
                             @Override
                             protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg) {
@@ -59,6 +58,8 @@ public class NettyServer {
                                 ctx.fireChannelRegistered();
                             }
                         });
+                        pipeline.addLast(new CustomOutboundHandler1());
+                        pipeline.addLast(new CustomOutboundHandler2());
                     }
                 });
 
