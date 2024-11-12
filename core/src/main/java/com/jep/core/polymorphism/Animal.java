@@ -10,4 +10,15 @@ class Animal {
     public void sound(String type) {
         System.out.println("Animal makes a " + type + " sound");
     }
+
+
+    public static void main(String[] args) {
+        Animal animal = new Animal();
+        System.out.println(animal);
+        int i = 0;
+        // 在这里编写您的程序代码
+        i++;
+    }
+
+
 }

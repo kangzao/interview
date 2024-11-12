@@ -23,7 +23,7 @@ public class ThreaCounter extends Thread {
         t3.join();
         System.out.println("cnt is " + cnt);
 
-        //编译优化 bytecode  指令重排序
+        //编译优化 bytecode  指令重排序  151373 131485  170737
     }
     //main函数唤起一个jvm进程  包含三个线程  三个线程各自运行  有个类变量(被多个线程访问)
 }
