@@ -15,6 +15,7 @@ public class ThreadState {
             }
         });
         a.setName("Thread A");
+
         Thread b = new Thread(() -> {
             synchronized (lock) {
                 try {

@@ -1,6 +1,7 @@
 package com.jep.github.interview.concurrency.threadDemo;
 
 public class ThreaCounter extends Thread {
+    //类变量  生命周期不依赖于对象
     private static int cnt = 0;
 
     @Override
@@ -12,6 +13,7 @@ public class ThreaCounter extends Thread {
 
     public static void main(String[] args) throws InterruptedException {
         ThreaCounter t1 = new ThreaCounter();
+        System.out.println(t1.toString());
         ThreaCounter t2 = new ThreaCounter();
         ThreaCounter t3 = new ThreaCounter();//语言级别有了线程 操作系统还没有
         t1.start();//意味着操作系统中有了线程  是否run起来由操作系统决定

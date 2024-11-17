@@ -6,7 +6,8 @@ public class InterruptTest {
     public static void main(String[] args) throws Exception {
         // sleepThread 不停的尝试睡眠
         Thread st = new Thread(new SleepRunner(), "SleepThread");
-        st.setDaemon(true);//设置成精灵线程，其他非精灵线程都结束后，jvm自动关闭
+        //设置成精灵线程，其他非精灵线程都结束后，jvm自动关闭
+        st.setDaemon(true);
         st.start();
 
         // busyThread 不停的运行

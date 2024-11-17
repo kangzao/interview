@@ -15,15 +15,31 @@ public class ConditionDemo {
         consumer.start();
     }
 
+    /**
+     * ItemQueue 类是一个自定义的线程安全队列，用于在多线程环境中存储和传递对象。
+     * 它使用条件变量来控制队列的填充和移除操作，确保在队列为空或满时线程能够正确地等待和通知。
+     */
     static class ItemQueue {
+        // 存储队列中项目的数组
         private Object[] items = null;
+        // 当前队列中的项目数
         private int current = 0;
+        // 下一个要放置项目的索引
         private int placeIndex = 0;
+        // 下一个要移除项目的索引
         private int removeIndex = 0;
+        // 锁对象，用于同步访问队列资源
         private final Lock lock;
+        // 空队列条件，用于通知队列已空
         private final Condition isEmpty;
+        // 满队列条件，用于通知队列已满
         private final Condition isFull;
 
+        /**
+         * 构造一个指定容量的 ItemQueue 实例。
+         *
+         * @param capacity 队列的容量，即最多能存储的项目数。
+         */
         public ItemQueue(int capacity) {
             this.items = new Object[capacity];
             lock = new ReentrantLock();

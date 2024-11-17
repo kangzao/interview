@@ -14,8 +14,8 @@ public class CallableThreadTest {
 
         try {
             System.out.println("子线程的返回值：");
-            // 调用FutureTask对象的get()方法来同步等待子线程执行结束后的返回值
-            System.out.println("子线程的返回值：" + f.get(3000, TimeUnit.MILLISECONDS));
+            // 调用FutureTask对象的get()方法来同步等待子线程执行结束后的返回值  //不见不散
+            System.out.println("子线程的返回值---------：" + f.get(3000, TimeUnit.MILLISECONDS));
         } catch (Exception e) {
 
         }
