@@ -9,10 +9,13 @@ public class AtomicIntegerFieldUpdaterExample {
     }
 
     // 创建 AtomicIntegerFieldUpdater 对象
-    private static AtomicIntegerFieldUpdater<Data> updater =
-            AtomicIntegerFieldUpdater.newUpdater(Data.class, "value");
+    private static AtomicIntegerFieldUpdater<Data> updater = AtomicIntegerFieldUpdater.newUpdater(Data.class, "value");
 
     public static void main(String[] args) {
+
+        Runnable runnable = () -> System.out.println(Thread.currentThread().getName());
+        runnable.run();
+
 // 创建 Data 对象
         Data data = new Data();
         data.value = 0;

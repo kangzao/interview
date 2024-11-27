@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 public class CompletableFutureDemo4 {
     public static void main(String[] args) throws ExecutionException, InterruptedException { //当一个线程依赖另一个线程时用 thenApply 方法来把这两个线程串行化,
         CompletableFuture.supplyAsync(() -> {
-            System.out.println(Thread.currentThread().getName() + "cf");
+            System.out.println(Thread.currentThread().getName() + "----cf");
             //暂停几秒钟线程
             try {
                 TimeUnit.SECONDS.sleep(1);
@@ -17,19 +17,19 @@ public class CompletableFutureDemo4 {
             System.out.println("111");
             return 1024;
         }).thenApply(f -> {
-            System.out.println(Thread.currentThread().getName() + "1");
+            System.out.println(Thread.currentThread().getName() + "-----1");
             System.out.println("222");
             return f + 1;
         }).thenApply(f -> {
-            System.out.println(Thread.currentThread().getName() + "2");
+            System.out.println(Thread.currentThread().getName() + "-----2");
             int age = 10 / 0; // 异常情况：哪步出错就停在哪步。
             System.out.println("333");
             return f + 1;
         }).whenCompleteAsync((v, e) -> {
-            System.out.println(Thread.currentThread().getName() + "3");
+            System.out.println(Thread.currentThread().getName() + "-----3");
             System.out.println("*****v: " + v);
         }).exceptionally(e -> {
-            System.out.println(Thread.currentThread().getName() + "4");
+            System.out.println(Thread.currentThread().getName() + "-----4");
             e.printStackTrace();
             return null;
         });

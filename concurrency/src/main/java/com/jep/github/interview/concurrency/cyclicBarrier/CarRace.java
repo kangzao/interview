@@ -5,11 +5,25 @@ import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
 public class CarRace {
+    /**
+     * 主程序入口
+     * 模拟赛车比赛，每辆赛车在所有比赛回合中运行
+     * 使用CyclicBarrier来同步赛车的起始点
+     *
+     * @param args 命令行参数
+     */
     public static void main(String[] args) {
+        // 定义参与比赛的赛车数量
         int numCars = 3;
+        // 定义每个赛车的比赛回合数
         int numRounds = 2;
+
+        // 初始化CyclicBarrier，用于同步赛车的起始点
+        // 当所有赛车都到达屏障时，执行一次操作：打印开始新一圈比赛的信息
         CyclicBarrier barrier = new CyclicBarrier(numCars,
                 () -> System.out.println("所有赛车已准备好，开始新一圈比赛！"));
+
+        // 创建并启动每个赛车线程
         for (int i = 0; i < numCars; i++) {
             new Thread(new Car(barrier, i, numRounds)).start();
         }

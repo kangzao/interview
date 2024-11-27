@@ -18,6 +18,7 @@ public class CompletableFutureDemo5 {
             System.out.println("111");
             return 1024;
         }).handle((f, e) -> {
+            System.out.println("f ==" + f + ", e ==" + e);
             System.out.println(Thread.currentThread().getName() + "==step 1");
             int age = 10 / 0;
             System.out.println("222");
