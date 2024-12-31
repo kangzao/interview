@@ -9,7 +9,7 @@ public class AtomicIntegerArrayExample {
 // 创建两个线程，分别对数组进行自增操作
         Thread thread1 = new Thread(() -> {
             for (int i = 0; i < atomicArray.length(); i++) {
-                int value = atomicArray.getAndIncrement(i);
+                int value = atomicArray.incrementAndGet(i);
                 System.out.println("Thread 1: Incremented value at index " + i + ": " + value);
             }
         });

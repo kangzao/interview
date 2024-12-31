@@ -20,6 +20,7 @@ public class ArrayIncrementor extends RecursiveAction { // <1>
 
     @Override
     protected void compute() {
+        System.out.println(Thread.currentThread().getName());
         if (hi - lo <= THRESHOLD) {
             System.out.printf("compute: %d - %d %n", lo, hi);
             for (int i = lo; i < hi; i++) { // <1> 5个数字一组进行拆分

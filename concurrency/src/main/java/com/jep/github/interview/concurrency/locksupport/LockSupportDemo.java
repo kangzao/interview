@@ -20,12 +20,20 @@ public class LockSupportDemo {
             System.out.println(Thread.currentThread().getName() + "被唤醒");
         }, "线程1");
         thread1.start();
+
         new Thread(() -> {
             System.out.println(Thread.currentThread().getName() + "通知");
             LockSupport.unpark(thread1);
+            LockSupport.unpark(thread1);
+            LockSupport.unpark(thread1);
+            LockSupport.unpark(thread1);
+
         }, "线程2").start();
     }
 }
+/**
+ * 线程2通知线程1进入线程1被唤醒
+ **/
 /**
  * 线程2通知线程1进入线程1被唤醒
  * <p>

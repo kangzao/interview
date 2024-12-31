@@ -31,6 +31,7 @@ public class SpinLockDemo {
         new Thread(() -> {
             try {
                 spinLockDemo.lock();
+                System.out.println(Thread.currentThread().getName() + "---->" + new Date());
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -52,7 +53,7 @@ public class SpinLockDemo {
 
 
         new Thread(() -> {
-            System.out.println(new Date());
+            System.out.println(Thread.currentThread().getName() + "---->" + new Date());
             try {
                 spinLockDemo.lock();
             } catch (InterruptedException e) {

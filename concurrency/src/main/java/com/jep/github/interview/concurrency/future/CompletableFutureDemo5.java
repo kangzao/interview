@@ -9,6 +9,7 @@ public class CompletableFutureDemo5 {
         //当一个线程依赖另一个线程时用 handle 方法来把这两个线程串行化,        
         // 异常情况：有异常也可以往下一步走，根据带的异常参数可以进一步处理
         CompletableFuture.supplyAsync(() -> {
+            System.out.println(Thread.currentThread().getName() + "==step 0");
             //暂停几秒钟线程
             try {
                 TimeUnit.SECONDS.sleep(1);

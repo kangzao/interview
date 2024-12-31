@@ -6,7 +6,8 @@ import java.util.concurrent.TimeUnit;
 
 public class CallableThreadTest {
     public static void main(String[] args) {
-        // FutureTask是一个包装器，通过接收Callable来创建，它同时实现了Future和Runnable接口。
+
+        // FutureTask是一个包装器，通过接收Callable来创建，它同时实现了Future和Runnable接口。 new Student
         FutureTask<Integer> f = new FutureTask<>(new CallableTask());//异步线程  可以返回结果
 
         // 使用FutureTask对象作为Thread对象的target创建并启动新线程

@@ -35,7 +35,7 @@ public class InterruptTest {
         public void run() {
             while (true) {
                 try {
-                    TimeUnit.SECONDS.sleep(1);
+                    TimeUnit.SECONDS.sleep(1);// false ----- true -------  false  既然已经响应过了，那就应该恢复中断标识位
                     System.out.println("sleeping in SleepRunner");
 //                    100
                 } catch (InterruptedException e) {
