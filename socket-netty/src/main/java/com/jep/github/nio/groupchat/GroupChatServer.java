@@ -51,7 +51,7 @@ public class GroupChatServer {
                         if (key.isAcceptable()) {
                             SocketChannel sc = listenChannel.accept();
                             sc.configureBlocking(false);
-                            //将该 sc 注册到 seletor
+                            //将该 sc 注册到 selector
                             sc.register(selector, SelectionKey.OP_READ);
                             //提示
                             System.out.println(sc.getRemoteAddress() + " 上线 ");

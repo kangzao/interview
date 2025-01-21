@@ -5,7 +5,10 @@ public class ClassLoaderTest {
         //从局部变量表的slot里面读取局部变量
         // 获取系统类加载器
         ClassLoader systemClassLoader = ClassLoader.getSystemClassLoader();
+
+
         System.out.println(systemClassLoader);
+        System.out.println(ClassLoaderTest.class.getClassLoader());
 
         // 获取其上层的：扩展类加载器
         ClassLoader extClassLoader = systemClassLoader.getParent();

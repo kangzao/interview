@@ -32,6 +32,6 @@ public class HelloClient {
                 .sync()
                 .channel()
                 // 6. 向服务器发送数据
-                .writeAndFlush("hello, world");
+                .writeAndFlush("hi, world");
     }
 }

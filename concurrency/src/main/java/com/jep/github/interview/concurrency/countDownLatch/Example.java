@@ -6,7 +6,7 @@ public class Example {
     public static void main(String[] args) throws InterruptedException {
 
         int numTasks = 6;
-        CountDownLatch latch = new CountDownLatch(7);
+        CountDownLatch latch = new CountDownLatch(6);
         for (int i = 0; i < numTasks; i++) {
             new Thread(() -> {
 // 子任务的逻辑

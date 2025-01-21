@@ -24,10 +24,6 @@ public class LockSupportDemo {
         new Thread(() -> {
             System.out.println(Thread.currentThread().getName() + "通知");
             LockSupport.unpark(thread1);
-            LockSupport.unpark(thread1);
-            LockSupport.unpark(thread1);
-            LockSupport.unpark(thread1);
-
         }, "线程2").start();
     }
 }
