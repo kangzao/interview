@@ -29,7 +29,7 @@ public class NettyClient {
                         ChannelPipeline pipeline = ch.pipeline();
                         // client发送消息的顺序为CustomOutboundHandler1 -> CustomOutboundHandler2  只会执行OutboundHandler
                         pipeline.addLast(new CustomOutboundHandler2());
-//                        pipeline.addLast(new CustomOutboundHandler1());
+                        pipeline.addLast(new CustomOutboundHandler1());
 
                         //client接收到server返回的消息，执行顺序为  CustomInboundHandler2 -> CustomInboundHandler1
                         pipeline.addLast(new CustomInboundHandler2());

@@ -18,7 +18,7 @@ public class HelloClient {
         new Bootstrap()
                 // 2. 添加 EventLoop  创建 NioEventLoopGroup，可以简单理解为 线程池 + Selector
                 .group(new NioEventLoopGroup())
-                // 3. 选择客户端 channel 实现 选择服务 Scoket 实现类，其中 NioServerSocketChannel 表示基于 NIO 的服务器端实现
+                // 3. 选择客户端 channel 实现 选择服务 socket 实现类，其中 NioServerSocketChannel 表示基于 NIO 的服务器端实现
                 .channel(NioSocketChannel.class)
                 // 4. 添加处理器
                 .handler(new ChannelInitializer<NioSocketChannel>() {

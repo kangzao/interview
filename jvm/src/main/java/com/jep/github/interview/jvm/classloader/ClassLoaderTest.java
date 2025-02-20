@@ -13,7 +13,6 @@ public class ClassLoaderTest {
         // 获取其上层的：扩展类加载器
         ClassLoader extClassLoader = systemClassLoader.getParent();
         System.out.println(extClassLoader);
-
         // 试图获取 根加载器
         ClassLoader bootstrapClassLoader = extClassLoader.getParent();
         System.out.println(bootstrapClassLoader);

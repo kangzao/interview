@@ -11,9 +11,11 @@ import io.netty.handler.codec.string.StringEncoder;
 public class GroupChatServer {
 
     private int port; //监听端口
+
     public GroupChatServer(int port) {
         this.port = port;
     }
+
     //编写run方法，处理客户端的请求
     public void run() throws Exception {
         //创建两个线程组
@@ -56,6 +58,6 @@ public class GroupChatServer {
     }
 
     public static void main(String[] args) throws Exception {
-        new GroupChatServer(7000).run();
+        new GroupChatServer(7001).run();
     }
 }

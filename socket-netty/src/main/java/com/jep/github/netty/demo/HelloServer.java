@@ -15,7 +15,7 @@ public class HelloServer {
         // 1. 启动器，负责组装 netty 组件，启动服务器
         new ServerBootstrap()
                 // 2. BossEventLoop, WorkerEventLoop(selector,thread), group 组
-                .group(new NioEventLoopGroup()) // 创建 NioEventLoopGroup，可以简单理解为 线程池 + Selector
+                .group(new NioEventLoopGroup())// 创建 NioEventLoopGroup，可以简单理解为 线程池 + Selector
                 // 3. 选择 服务器的 ServerSocketChannel 实现
                 .channel(NioServerSocketChannel.class) // OIO BIO
                 // 4. boss 负责处理连接 worker(child) 负责处理读写，决定了 worker(child) 能执行哪些操作（handler）
@@ -26,13 +26,17 @@ public class HelloServer {
                             protected void initChannel(NioSocketChannel ch) throws Exception {
                                 // 6. 添加具体 handler
                                 ch.pipeline().addLast(new LoggingHandler());
+
                                 ch.pipeline().addLast(new StringDecoder()); // 将 ByteBuf 转换为字符串
+
                                 ch.pipeline().addLast(new ChannelInboundHandlerAdapter() { // 自定义 handler
                                     @Override // 读事件
                                     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
                                         System.out.println(msg); // 打印上一步转换好的字符串
                                     }
                                 });
+
+
                             }
                         })
                 // 7. 绑定监听端口  ServerSocketChannel 绑定的监听端口

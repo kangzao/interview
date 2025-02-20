@@ -48,7 +48,7 @@ public class NettyServer {
 
             //绑定一个端口并且同步, 生成了一个 ChannelFuture 对象
             //启动服务器(并绑定端口)
-            ChannelFuture cf = bootstrap.bind(6668).sync();
+            ChannelFuture cf = bootstrap.bind(6669).sync();
 
             //用于监听 ChannelFuture 对象的状态变化。ChannelFuture 表示异步操作的结果，例如连接、绑定或写操作。
 
