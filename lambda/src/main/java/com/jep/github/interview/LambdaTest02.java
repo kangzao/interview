@@ -27,9 +27,7 @@ public class LambdaTest02 {
     public static void main(String[] args) {
         List<String> list = Arrays.asList("北京", "南京", "天津", "东京", "西京");
 
-        List<String> list2 = filterString(list, (String s) -> {
-            return s.contains("京");
-        });  // 或者 s->s.contaions("京"); // 数据类型可以省略，一条语句 return {}也可以省略
+        List<String> list2 = filterString(list, s -> s.contains("京"));  // 或者 s->s.contaions("京"); // 数据类型可以省略，一条语句 return {}也可以省略
 
         System.out.println(list2);
 

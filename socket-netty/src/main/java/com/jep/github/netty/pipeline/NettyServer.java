@@ -51,7 +51,7 @@ public class NettyServer {
                                 ctx.writeAndFlush(firstMessage);
                             }
 
-                            //Channel已经被注册到一个EventLoop上
+                            //Channel已经被注册到一个EventLoop(thread + selector)
                             @Override
                             public void channelRegistered(ChannelHandlerContext ctx) {
                                 System.out.println("连接上来了");

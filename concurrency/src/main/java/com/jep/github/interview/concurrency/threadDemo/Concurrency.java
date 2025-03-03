@@ -3,10 +3,11 @@ package com.jep.github.interview.concurrency.threadDemo;
 import java.util.concurrent.TimeUnit;
 
 public class Concurrency {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Thread thread = new Thread(new DaemonRunner(), "DaemonRunner");
         thread.setDaemon(true);
         thread.start();//主线程已经结束
+        Thread.sleep(2000);
 
     }
 
@@ -15,7 +16,7 @@ public class Concurrency {
         public void run() {
             try {
                 try {
-                    TimeUnit.SECONDS.sleep(1000);
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
