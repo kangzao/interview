@@ -5,7 +5,7 @@ import com.google.common.eventbus.Subscribe;
 
 public class EventBusCenter {
     private static EventBus eventBus = new EventBus();
-    
+
 
     private EventBusCenter() {
     }
